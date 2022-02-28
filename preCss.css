@@ -60,7 +60,7 @@ header{
     max-width: 1400px;
     height: 100%;
     display: flex;
-    border: 1px solid sienna;
+    
     justify-content: flex-end;
 
 }
@@ -68,6 +68,7 @@ header{
     display: flex;
     justify-content: center;
    align-items: center;
+   margin-right: 3vw;
 }
 .topBarText>li{
     display: flex;
@@ -76,6 +77,28 @@ header{
 .topBarText>li::before{
     content: '|';
     margin: 0 0.5rem;
+}
+.topIcon{
+    margin: 0 1.5rem 0 0;
+}
+.topIcon svg{
+    transform: translateY(21%);
+   
+}
+#facebook_Icon svg{
+   max-width: 2rem;
+}
+#youtube_Icon svg{
+    max-width: 2.3rem;
+}
+.topIcon svg path{
+    transition: fill 0.75s;
+}
+#facebook_Icon svg:hover path:nth-child(1){
+     fill:#326ef0;
+}
+#youtube_Icon svg:hover path:nth-child(1){
+    fill:#ff0000;
 }
 /* 選單 */
 
