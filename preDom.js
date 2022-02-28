@@ -28,6 +28,14 @@ fetch('header.html')
         console.log('Failed to fetch page: ', err);  
     });
 
+    fetch("image/social-color-1_logo-facebook.svg")
+  .then(response => response.text())
+  .then(svg => document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", svg));
+
+  fetch("image/social-color-1_logo-youtube.svg")
+  .then(response => response.text())
+  .then(svg => document.querySelector('#youtube_Icon').insertAdjacentHTML("afterbegin", svg));
+
     
 
     function innerHTML() {  

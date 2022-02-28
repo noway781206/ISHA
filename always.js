@@ -1,4 +1,4 @@
-
+{
   
  
 function menuOffset(){
@@ -66,3 +66,4 @@ function throttle(func, timeout = 250) {
 
 
       });
+    }
