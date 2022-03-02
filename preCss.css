@@ -120,6 +120,9 @@ header{
 .rwd-menu{
     display: none;
 }
+.rwd-top{
+    display: none;
+}
 
 #menu{
     display: flex;
@@ -328,6 +331,84 @@ footer{
     /* 選單menu */
     
     
+
+    .menu-texts.menuPop{
+        transform: translateX(0);
+    }
+    .rwd-top{
+        display: flex;
+        width: 100%;
+        height: 5rem;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    .rwd-top button{
+        display: flex;
+        width: 25px;
+        height: 25px;
+       
+        position: absolute;
+        right: 3%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition:transform 0.2s ;
+    }
+    .rwd-top button span{
+        display: flex;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.5s;
+    }
+    .rwd-top button span div{
+        content: '';
+        
+        display: block;
+        height: 3px;
+        width: 80%;
+        background:  #14b119;
+        top: 47%;
+        left: 10%;
+        transition: transform 0.5s;
+    }
+   
+    .rwd-top button span:nth-child(1){
+        transform: translate(0);
+    }
+    .rwd-top button span:nth-child(1) div{
+        transform: rotateZ(45deg) scaleX(1);    
+    
+    }
+    .rwd-top button span:nth-child(3){
+        transform: translate(0);
+    }
+    .rwd-top button span:nth-child(3) div{
+        transform: rotateZ(-45deg) scaleX(1);
+    /* transform: rotateZ(-35deg); */
+   
+    
+    
+    }
+    .rwd-top button span:nth-child(2){
+        transform: scaleX(0);
+  
+     
+    }
+ 
+
+    .menu-text{
+        height: 3.5rem;
+        flex:initial;
+        width: 80%;
+        border-top:    1px solid #e7e7e7;
+ 
+    }
     .menu-texts{
         position: fixed;
         flex-direction: column;
@@ -336,6 +417,17 @@ footer{
         width: 85vw;
         visibility: visible;
         transform: translateX(-100%);
+        transition:transform 0.55s ;
+        justify-content: initial;
+        height: 30rem;
+    }
+    .menu-text h1::after{
+        content: '<icon>';
+        margin-left: 10px;
+       
+    }
+    .menu-texts .menu-text:last-child{
+        border-bottom:  1px solid #e7e7e7;
     }
     .rwd-menu{
         display: flex;
@@ -377,9 +469,25 @@ footer{
         display: block;
         width: 28px;
         height: 3px;
-        background: #14b119;;
+        background: #14b119;
         margin: 3px 0;
     }
-
+    #rwdblack{
+        display: flex;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.616);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+    .blackPop#rwdblack{
+        visibility: visible;
+        opacity: 1;
+        
+    }
     /* RWD結束 */
 } 
