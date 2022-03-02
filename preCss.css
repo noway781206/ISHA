@@ -327,9 +327,7 @@ footer{
     }
     /* 選單menu */
     
-    #menu{
-        
-    }
+    
     .menu-texts{
         position: fixed;
         flex-direction: column;

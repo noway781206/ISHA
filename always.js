@@ -1,9 +1,17 @@
 {
-  
- 
-function menuOffset(){
+      fetch("image/social-color-1_logo-facebook.svg")
+  .then(response => response.text())
+  .then(svg => document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", svg));
 
+  fetch("image/social-color-1_logo-youtube.svg")
+  .then(response => response.text())
+  .then(svg => document.querySelector('#youtube_Icon').insertAdjacentHTML("afterbegin", svg)); 
+
+
+
+  function menuOffset(){
     
+      
     if (window.scrollY > topBar.offsetHeight){
         menu.classList.add('stiky');
         topBar.classList.add('stikyBar');        
@@ -16,15 +24,13 @@ function menuOffset(){
     }
     
     
-    // if (window.scrollY > menu.offsetTop){
-    //     menu.classList.remove('stiky')    
-    // }   
+
   
     
     
     
-};
-function throttle(func, timeout = 250) {
+  };
+  function throttle(func, timeout = 250) {
     let last;
     let timer;
    
@@ -45,25 +51,11 @@ function throttle(func, timeout = 250) {
       }
     }
   };
-
-    
-    document.addEventListener("DOMContentLoaded", function(){
-        let menu = document.querySelector('#menu');
-        let topBar = document.querySelector('#topBar');
-        
-
-        
-      
-
-
-        window.addEventListener('scroll',menuOffset)
-
-
-
-
-
-
-
-
-      });
-    }
+  
+  let menu = document.querySelector('#menu');
+  let topBar = document.querySelector('#topBar');
+  window.addEventListener('scroll',menuOffset)
+  
+  
+  
+  }
