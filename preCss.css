@@ -20,6 +20,7 @@ html, body {
 h1{
     font-size: 0.9rem;
     font-weight: bold;
+    margin: 0 5px;
     
 }
 h2{
@@ -88,10 +89,7 @@ header{
     align-items: center;
     height: 100%;
 }
-.topIcon svg{
-   
-   
-}
+
 #facebook_Icon svg{
    max-width: 2rem;
 }
@@ -119,6 +117,9 @@ header{
     fill:#ff0000;
 }
 /* 選單 */
+.rwd-menu{
+    display: none;
+}
 
 #menu{
     display: flex;
@@ -298,3 +299,89 @@ footer{
     background: pink;   
     
 }
+/* 平板與大手機 RWD*/
+
+@media only screen and (min-width: 769px) and (max-width: 1100px) {
+    html, body { 
+        font-size: small;
+    }
+    /* 頂部bar */
+    #topBar>div {
+        width: inherit;
+        max-width: initial;
+   
+    }
+    /* 選單menu */
+    #menu{
+        min-height: 46px;
+    }
+
+    /* RWD結束 */
+} 
+/*手機 RWD*/
+@media only screen and (max-width: 768px) {
+    
+    /* 頂部bar */
+    #topBar{
+        display: none;
+    }
+    /* 選單menu */
+    
+    #menu{
+        
+    }
+    .menu-texts{
+        position: fixed;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        width: 85vw;
+        visibility: visible;
+        transform: translateX(-100%);
+    }
+    .rwd-menu{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0 12px;
+    }
+  
+    .rightRWD{
+        display: flex;
+        width: 50px;
+        height: 50px;
+        background-color: saddlebrown;
+    }
+    .rwd-logo{
+        display: flex;
+        width: 50px;
+        height: 50px;
+        background-color: saddlebrown;
+  
+    }
+    .menu-button{
+        display: flex;
+        width: 50px;
+        height: 50px;
+        /* background-color: saddlebrown; */
+        justify-content: center;
+        align-items: center;
+    }
+    .hamburger{
+        display: flex;
+        width: 80%;
+        height: 80%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .hamburger .line{
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: #14b119;;
+        margin: 3px 0;
+    }
+
+    /* RWD結束 */
+} 
