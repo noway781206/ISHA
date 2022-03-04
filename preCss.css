@@ -173,13 +173,13 @@ header{
     transition: 0.15s all;
     cursor: pointer;
  }
- .menu-text:hover + .drop-menu,
+ /* .menu-text:hover + .drop-menu,
  .drop-menu:hover{
     visibility: visible;
     opacity: 1;
     
     
- }
+ } */
  .menu-text:hover{
      color: #6bbc6e;
  }
@@ -302,11 +302,23 @@ footer{
     background: pink;   
     
 }
+/* 只有平板以上有 */
+@media only screen and (min-width: 769px){
+    .menu-text:hover + .drop-menu,
+ .drop-menu:hover{
+    visibility: visible;
+    opacity: 1;    
+ }
+ .drop-menu button{
+     display: none;
+ }
+ /* 結束 */
+}
 /* 平板與大手機 RWD*/
 
 @media only screen and (min-width: 769px) and (max-width: 1100px) {
     html, body { 
-        font-size: small;
+        font-size: medium;
     }
     /* 頂部bar */
     #topBar>div {
@@ -323,13 +335,37 @@ footer{
 } 
 /*手機 RWD*/
 @media only screen and (max-width: 768px) {
-    
+    html, body {
+        font-size: small;
+    }
+    header{
+        margin: 0 0 62px 0;
+    }
+    h1{
+        font-size: 1.1rem;
+    }
+    h2{
+        font-size: 1.08rem;
+    }
+    h3{
+        font-size: 1.08rem;
+    }
+    h4{
+        font-size: 1.18rem;
+        font-weight: bold;
+        color: white;
+    }
     /* 頂部bar */
     #topBar{
         display: none;
+        
     }
+  
     /* 選單menu */
-    
+    #menu{
+        position: fixed;
+        top: 0;
+    }
     
 
     .menu-texts.menuPop{
@@ -338,15 +374,19 @@ footer{
     .rwd-top{
         display: flex;
         width: 100%;
-        height: 5rem;
+        height: 3rem;
         justify-content: center;
         align-items: center;
         position: relative;
+        background: #14b119;
+    }
+    .rwd-top .logo{
+        margin-left: -30px;
     }
     .rwd-top button{
         display: flex;
-        width: 25px;
-        height: 25px;
+        width: 3rem;
+        height: 3rem;
        
         position: absolute;
         right: 3%;
@@ -354,6 +394,14 @@ footer{
         justify-content: center;
         align-items: center;
         transition:transform 0.2s ;
+        
+    }
+ 
+    .rwd-top-buttonDiv{
+        display: flex;
+        width: 25px;
+        height: 25px;
+        position: relative;
     }
     .rwd-top button span{
         display: flex;
@@ -372,7 +420,7 @@ footer{
         display: block;
         height: 3px;
         width: 80%;
-        background:  #14b119;
+        background:  white;
         top: 47%;
         left: 10%;
         transition: transform 0.5s;
@@ -403,11 +451,19 @@ footer{
  
 
     .menu-text{
-        height: 3.5rem;
+        height: 4.5rem;
         flex:initial;
         width: 80%;
         border-top:    1px solid #e7e7e7;
+        justify-content: flex-start;
  
+    }
+    .menu-text>span{
+        position: absolute;
+        color: #14b119;
+       
+        right: 0;
+
     }
     .menu-texts{
         position: fixed;
@@ -419,14 +475,22 @@ footer{
         transform: translateX(-100%);
         transition:transform 0.55s ;
         justify-content: initial;
-        height: 30rem;
+        overflow: scroll;
+       
+        height: 100vh;
+        
     }
     .menu-text h1::after{
         content: '<icon>';
         margin-left: 10px;
        
     }
+    .menu-texts .menu-text:nth-child(2){
+     
+        border-top:  1px solid #e7e7e7;
+    }
     .menu-texts .menu-text:last-child{
+        
         border-bottom:  1px solid #e7e7e7;
     }
     .rwd-menu{
@@ -487,7 +551,127 @@ footer{
     .blackPop#rwdblack{
         visibility: visible;
         opacity: 1;
+       
         
     }
+    /* drop-menu */
+
+    .drop-menu{
+        top: 3rem;
+        z-index: 1;
+        transform: translateX(-100%);
+        transition:transform 0.4s ;
+        visibility: visible;
+        opacity: 1;
+      
+    }
+    .drop-menu.atcive{
+        transform: translateX(0%);
+       
+        
+    }
+    
+    .drop-menu button{
+        position: absolute;
+        width: 100%;
+        height: 3rem;
+        
+        top: -3rem;
+        z-index: 0;
+     
+    }
+    .drop-menu button .Xbutton{
+        position: absolute;
+        display: flex;
+        right: 3%;
+        top: 0;
+        width: 3rem;
+        height: 3rem;
+        
+    }
+    .drop-menu button::before{
+        position: absolute;
+        content: '◄';
+        display: flex;
+        left: 14px;
+        top: 33%;
+        color: white;
+    }
+    .drop-menu>ul {
+       
+        margin: 1.2rem 0 0 0;
+        flex-direction: column;
+        height: 100vh;
+        overflow: scroll;
+    }
+    .drop-menu>ul>li{
+        flex:initial;
+        margin: 1.25rem 0;
+        transform: translateY(0);
+    }
+    .drop-menu>ul>li h2{
+        padding: 0 1.25rem;
+        font-weight: bold;
+        
+    }
+    .drop-menu>ul>li h2 span:nth-child(1){
+        
+        display: block;
+        width: 5px;
+        height: 100%;
+        background-color: #6bbc6e;
+        margin-right: 5px;
+        transition:height 0.3s,width 0.5s ;    
+
+    }
+  
+    .drop-menu>ul>li h2 span:nth-child(2){
+        font-size: 1.6rem;
+        color: #14b119;
+        transform:translateY(-2px) scaleX(0.9);
+        margin: 1px 5px;
+        transition: transform .1s;
+    }
+    
+    .drop-menu>ul>li h2 span:nth-child(1).active{
+        height: 0;
+        width: 0;
+    }
+    .drop-menu>ul>li h2 span:nth-child(2).active{
+  
+        transform: rotateZ(180deg) scaleX(0.9);
+        
+    }
+  
+    .drop-menu>ul>li h2::after{
+        display: none;         
+    }
+
+     .drop-menu>ul>li h2::before{
+        display: none;         
+    }
+    .drop-menu .innerText{
+        overflow: hidden;
+        height: fit-content;
+        max-height: 0;
+        padding: 0 1.25rem 0 2.45rem;
+        margin: 9px 0 0 0;
+        transition: max-height 0.6s;
+        background: #14b11912;
+      
+       
+    }
+    .drop-menu .innerText.active{
+        max-height: 20rem;
+        
+    }
+    .drop-menu .innerText li {
+        margin: 0 0 9px 0;
+        padding: 1rem 0;
+        margin: 0;
+        
+    }
+
+
     /* RWD結束 */
 } 

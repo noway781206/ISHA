@@ -21,6 +21,7 @@
 
   function menuOffset(){
     
+    
       
     if (window.scrollY > topBar.offsetHeight){
         menu.classList.add('stiky');
@@ -66,12 +67,16 @@
   let topBar = document.querySelector('#topBar');
   let menuButton = document.querySelector('.menu-button');
   let menuTexts = document.querySelector('.menu-texts');
-  let rwdTopButton = document.querySelector('#rwd-top-button');
-  let span = [...document.querySelectorAll('#rwd-top-button span')]
-  let spanDiv = [...document.querySelectorAll('#rwd-top-button span div')]
+  let rwdTopButton = document.querySelectorAll('.rwd-top-button');
+  let span = [...document.querySelectorAll('.rwd-top-button span')]
+  let spanDiv = [...document.querySelectorAll('.rwd-top-button span div')]
   let rwdBlack = document.querySelector('#rwdblack');
+  let dropMenu = document.querySelectorAll('.drop-menu');
+  let rwdList = [...document.querySelectorAll('.drop-menu>ul>li')];
+  let rwdLastbutton = document.querySelectorAll('.drop-menu button')
+  let menuText = document.querySelectorAll('.menu-text');
   
-  
+ 
   
   
   function menuButtonHLer(e) {    
@@ -82,33 +87,104 @@
     span[1].style.transform = "scaleX(0)";
     spanDiv[0].style.transform = "rotateZ(45deg) scaleX(1)";
     spanDiv[2].style.transform = "rotateZ(-45deg) scaleX(1)";
-    rwdTopButton.style.transform = "scale(1)";
+    currentTarget.style.transform = "scale(1)";
     menuTexts.classList.add('menuPop');
     rwdBlack.classList.add('blackPop');
+    document.body.style.overflow = 'hidden';
+
     
     
   }
-  function topButtonHLer() {
+  function topButtonHLer(e) {
     span[0].style.transform = "translate(-27%,13%)";
     span[2].style.transform = "translate(-27%,-13%)";
     span[1].style.transform = "scaleX(1)";
     spanDiv[0].style.transform = "rotateZ(45deg) scaleX(0.5)";
     spanDiv[2].style.transform = "rotateZ(-45deg) scaleX(0.5)";
-    rwdTopButton.style.transform = "scale(0.7)";
+    // e.currentTarget.style.transform = "scale(0.7)";
     menuTexts.classList.remove('menuPop');
     rwdBlack.classList.remove('blackPop');
+    document.body.style.overflow = 'inherit';
+    dropMenu.forEach(item=>{
+      item.classList.remove('atcive');
+    })
     
+
     
    
   }
+  function rwdInnerList(e) {
+    let {currentTarget} = e
+    
+    let text = currentTarget.querySelector('.innerText');
+    let rwdListSpan = currentTarget.querySelector('h2 span:nth-child(1)');
+    let rwdDropIcon = currentTarget.querySelector('.rwd-drop-icon');
 
+    let otherList = rwdList.filter((list)=>{
+      return list !== currentTarget
+    });    
+    otherList.forEach((list)=>{
+      list.querySelector('.innerText')?list.querySelector('.innerText').classList.remove('active'):'';
+      list.querySelector('h2 span:nth-child(1)')?list.querySelector('h2 span:nth-child(1)').classList.remove('active'):'';
+      list.querySelector('.rwd-drop-icon')? list.querySelector('.rwd-drop-icon').classList.remove('active') :'';
+      
+      
+      
+    })
+    text.classList.toggle('active');
+    rwdListSpan.classList.toggle('active');
+    rwdDropIcon?rwdDropIcon.classList.toggle('active'):0;
+  }
+
+  function dropMenuHLer(e) {
+    let a = e.currentTarget.nextElementSibling
+    a.classList.toggle('atcive');
+    let b = menuTexts.querySelector('.logo')
+    b.style.display= 'none'
+    
+    
+  }
+  function rwdLastHLer(e){   
+    
+    let a = e.currentTarget.parentElement
+   
+    a.classList.remove('atcive')
+    
+  }
+  function dropMenuTransition(e) {
+    if(e.currentTarget.classList.contains('atcive') !== true &&
+    e.propertyName.includes('transform')){
+      menuTexts.querySelector('.logo').style.display='flex';
+    }
+    
+    
+  }
+  
+  
   window.addEventListener('scroll',menuOffset)
   menuButton.addEventListener('click',menuButtonHLer)
-  rwdTopButton.addEventListener('click',topButtonHLer)
+  rwdTopButton.forEach((button)=>{
+    button.addEventListener('click',topButtonHLer)
+  })
+  
+
   rwdBlack.addEventListener('click',topButtonHLer)
- 
+  rwdList.forEach((list)=>{
+   
+    list.addEventListener('click',rwdInnerList)
+  })
+  rwdLastbutton.forEach((button)=>{
+    button.addEventListener('click',rwdLastHLer)
+  })
+  menuText.forEach((menu)=>{
+    menu.addEventListener('click',dropMenuHLer)
+  })
+  dropMenu.forEach((item)=>{
+    item.addEventListener('transitionend',dropMenuTransition)
+  })
+
   
   
   
-  
+  // 結束
   }
