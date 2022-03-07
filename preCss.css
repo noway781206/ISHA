@@ -300,10 +300,14 @@ footer{
     width: 100%;
     min-height: 100%;
     background: pink;   
+    flex-direction: column;
     
 }
 /* 只有平板以上有 */
 @media only screen and (min-width: 769px){
+    .menu-text>span{
+        display: none;
+    }
     .menu-text:hover + .drop-menu,
  .drop-menu:hover{
     visibility: visible;
@@ -342,10 +346,12 @@ footer{
         margin: 0 0 62px 0;
     }
     h1{
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        color: rgb(54, 54, 54);
     }
     h2{
-        font-size: 1.08rem;
+        font-size: 1.2rem;
+        color: rgb(54, 54, 54);
     }
     h3{
         font-size: 1.08rem;
@@ -374,7 +380,7 @@ footer{
     .rwd-top{
         display: flex;
         width: 100%;
-        height: 3rem;
+        min-height: 4.5rem;
         justify-content: center;
         align-items: center;
         position: relative;
@@ -557,7 +563,7 @@ footer{
     /* drop-menu */
 
     .drop-menu{
-        top: 3rem;
+        top: 4.5rem;
         z-index: 1;
         transform: translateX(-100%);
         transition:transform 0.4s ;
@@ -574,9 +580,9 @@ footer{
     .drop-menu button{
         position: absolute;
         width: 100%;
-        height: 3rem;
+        height: 4.5rem;
         
-        top: -3rem;
+        top: -4.5rem;
         z-index: 0;
      
     }
@@ -591,18 +597,24 @@ footer{
     }
     .drop-menu button::before{
         position: absolute;
-        content: '◄';
-        display: flex;
+        content: '◂';
+        font-size: 3rem;
+        width: 3rem;
+        top: -9%;
         left: 14px;
-        top: 33%;
+        bottom: 0;
         color: white;
+        display: flex;
+        align-items: center;
     }
     .drop-menu>ul {
        
-        margin: 1.2rem 0 0 0;
+        padding: 1.2rem 0 0 0;
         flex-direction: column;
-        height: 100vh;
+        height: 87vh;
         overflow: scroll;
+        position: absolute;
+        top: 0;
     }
     .drop-menu>ul>li{
         flex:initial;
@@ -610,7 +622,7 @@ footer{
         transform: translateY(0);
     }
     .drop-menu>ul>li h2{
-        padding: 0 1.25rem;
+        padding: 0 2.5rem;
         font-weight: bold;
         
     }
@@ -631,6 +643,8 @@ footer{
         transform:translateY(-2px) scaleX(0.9);
         margin: 1px 5px;
         transition: transform .1s;
+        position: absolute;
+        right: 8%;
     }
     
     .drop-menu>ul>li h2 span:nth-child(1).active{
@@ -654,7 +668,7 @@ footer{
         overflow: hidden;
         height: fit-content;
         max-height: 0;
-        padding: 0 1.25rem 0 2.45rem;
+        padding: 0 14%;
         margin: 9px 0 0 0;
         transition: max-height 0.6s;
         background: #14b11912;

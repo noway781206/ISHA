@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    h1{
+        display: flex;
+        height: 200px;
+        width: 200px;
+        background-color: pink;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+    }
+    .moveBox{
+        animation-name: myNEWmove
+    } 
+    .moveBox2{
+        animation-name: myNEWmove2
+    } 
+
+    @keyframes myNEWmove {
+  from {left: 0px;}
+  to {left: 200px;}
+}
+@keyframes myNEWmove2 {
+  0% {
+      left: 200px;
+    }
+  50%{
+    transform: translateY(30vh);
+
+  }    
+      
+    
+  100% {top: 0px;}
+}
+h2{
+    position: absolute;
+    top: 300px;
+    background: sandybrown;
+}
+@media only screen and (max-width: 768px) {
+    h1{
+        height: 150px;
+        width: 150px;
+    }
+}
+</style>
+</head>
+<body>
+    <h1 id="">456</h1>
+    <h2>123132132132</h2>
+<script src="test02.js"></script>
+</body>
+</html>

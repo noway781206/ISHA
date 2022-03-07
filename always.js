@@ -1,4 +1,4 @@
-{
+
   //     fetch("image/social-color-1_logo-facebook.svg")
   // .then(response => response.text())
   // .then(svg => document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", svg));
@@ -16,8 +16,16 @@
       this.markDownData = res.data
       document.querySelector('#youtube_Icon').insertAdjacentHTML("afterbegin", res.data)
   })
+  let myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)counter\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
-  console.log(2,document.querySelector('.menu-button'));
+  function cookie(){
+   
+    allCookies = document.cookie;
+    myCookie !== '' &&  myCookie > 0 ? menuCounter = myCookie : document.cookie = "counter=0"
+    myCookie !== '' &&  myCookie > 0 ? navCounter = myCookie :navCounter = 0;
+    console.log(myCookie);
+    
+  }
 
   function menuOffset(){
     
@@ -75,7 +83,8 @@
   let rwdList = [...document.querySelectorAll('.drop-menu>ul>li')];
   let rwdLastbutton = document.querySelectorAll('.drop-menu button')
   let menuText = document.querySelectorAll('.menu-text');
-  
+  let menuCounter = 0;
+  let navCounter;
  
   
   
@@ -91,6 +100,8 @@
     menuTexts.classList.add('menuPop');
     rwdBlack.classList.add('blackPop');
     document.body.style.overflow = 'hidden';
+    
+    
 
     
     
@@ -108,6 +119,18 @@
     dropMenu.forEach(item=>{
       item.classList.remove('atcive');
     })
+    document.querySelectorAll('.innerText').forEach((item)=>{
+      let a = item.classList.contains('active');
+      a ? item.classList.remove('active'):'';
+      
+    })
+    document.querySelectorAll('h2 span').forEach(item=>{
+      let removespan = item.classList.contains('active')
+      removespan? item.classList.remove('active'):'';
+    })
+   
+    
+    
     
 
     
@@ -143,6 +166,7 @@
     b.style.display= 'none'
     
     
+    
   }
   function rwdLastHLer(e){   
     
@@ -158,6 +182,81 @@
     }
     
     
+  }
+  let touchstartX,touchstartY,touchendX,touchendY;
+  
+  let touchSwicher = [...dropMenu].some(e=>e.classList.contains('atcive'));
+
+// let touchboolean = [];
+// let touchSwitcher = touchboolean.some(e=>e);
+// let test = ()=>{ [...dropMenu].forEach(item=>{
+//   if(item.classList.contains('atcive')=== true){
+//     touchboolean.push(true)  
+//   }else{
+//     touchboolean.push(false)  
+//   }
+// })} 
+// let result = ()=>{
+//   touchboolean = [];
+//   test()
+//   if([...dropMenu].some(e=>e.classList.contains('atcive'))) return
+//   console.log('true');
+  
+//     }
+
+  
+  
+  
+  
+
+
+  function handleGesture(e) {
+    // touchboolean = [];
+    // test()
+    // if(touchboolean.some(e=>e)) return
+    // if(touchSwicher) return
+      
+ 
+    if (touchendX+15 < touchstartX && 
+      25 > touchendY - touchstartY && 
+      touchendY - touchstartY > -25 &&
+     
+      [...dropMenu].some(e=>e.classList.contains('atcive')) !== true) {
+      topButtonHLer()
+        // console.log('Swiped Left');
+    }if(touchendX+15 < touchstartX && 
+             25 > touchendY - touchstartY &&
+             touchendY - touchstartY > -25 &&
+              [...dropMenu].some(e=>e.classList.contains('atcive')) ===true){
+                [...dropMenu].filter((e)=>{
+                  return e.classList.contains('atcive')
+                }).forEach(e=>e.classList.toggle('atcive'))
+    }
+ 
+  
+  
+  
+  
+  }
+  function menuTouchStar(e){
+    touchstartX = e.changedTouches[0].screenX;
+  touchstartY = e.changedTouches[0].screenY;
+  
+  }
+  function menuTouchMove(e) {
+    setTimeout(function () {
+    touchstartY = e.changedTouches[0].screenY;
+    touchstartX = e.changedTouches[0].screenX;
+  },150)
+  }
+  function menuTouchEnd(e) {
+    touchendX = e.changedTouches[0].screenX;
+  touchendY = e.changedTouches[0].screenY;
+  // setTimeout(function () {
+  //   touchstartY = touchendY;
+  //   touchstartX = touchendX;
+  // },50)
+  handleGesture();
   }
   
   
@@ -182,9 +281,55 @@
   dropMenu.forEach((item)=>{
     item.addEventListener('transitionend',dropMenuTransition)
   })
+  menuTexts.addEventListener('touchstart',menuTouchStar,false)
+  menuTexts.addEventListener('touchend',menuTouchEnd,false)
+  // menuTexts.addEventListener('touchmove',menuTouchMove,false)
+
+
+  function backbutton(){
+    menu.hash = '#menu'
+    document.location.href = '#menu'
+    
+    
+    
+  }
+  function backbuttonNav(){
+    if(menuTexts.classList.contains('menuPop')!== true&&location.hash ==="#menu"){
+      window.history.go(-1);
+   
+          }
+  }
+
+  
+
+  let mql = window.matchMedia('(max-width: 768px)');
+  if(mql.matches){
+   
+    menuButton.addEventListener('click',backbutton);
+    window.addEventListener('hashchange', function(event) {
+      
+      
+     
+      if(menuTexts.classList.contains('menuPop')=== true  &&location.hash ===""){
+
+        topButtonHLer();
+        
+      }
+    
+    })
+  
+      
+
+   
+    rwdTopButton.forEach((button)=>{
+      button.addEventListener('click',backbuttonNav)
+    })
+    
+    rwdBlack.addEventListener('click',backbuttonNav)
+          //RWD結束
+    }
 
   
   
-  
   // 結束
-  }
+  
