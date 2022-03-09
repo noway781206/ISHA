@@ -26,8 +26,34 @@
     console.log(myCookie);
     
   }
-
+let lastScrollTop = 0;
+ let menu = document.querySelector('#menu');
+  let topBar = document.querySelector('#topBar');
+  let menuButton = document.querySelector('.menu-button');
+  let menuTexts = document.querySelector('.menu-texts');
+  let rwdTopButton = document.querySelectorAll('.rwd-top-button');
+  let span = [...document.querySelectorAll('.rwd-top-button span')]
+  let spanDiv = [...document.querySelectorAll('.rwd-top-button span div')]
+  let rwdBlack = document.querySelector('#rwdblack');
+  let dropMenu = document.querySelectorAll('.drop-menu');
+  let rwdList = [...document.querySelectorAll('.drop-menu>ul>li')];
+  let rwdLastbutton = document.querySelectorAll('.drop-menu button')
+  let menuText = document.querySelectorAll('.menu-text');
+  let menuCounter = 0;
+  let navCounter;
   function menuOffset(){
+    
+    
+    
+    window.pageYOffset > lastScrollTop && window.scrollY > 62
+    ? menu.classList.add('down') 
+    : window.pageYOffset < lastScrollTop 
+    ? menu.classList.remove('down')  
+    : '';
+  
+    lastScrollTop = window.pageYOffset <= 0 ? 0 : window.pageYOffset;
+   
+    
     
     
       
@@ -71,20 +97,7 @@
     }
   };
   
-  let menu = document.querySelector('#menu');
-  let topBar = document.querySelector('#topBar');
-  let menuButton = document.querySelector('.menu-button');
-  let menuTexts = document.querySelector('.menu-texts');
-  let rwdTopButton = document.querySelectorAll('.rwd-top-button');
-  let span = [...document.querySelectorAll('.rwd-top-button span')]
-  let spanDiv = [...document.querySelectorAll('.rwd-top-button span div')]
-  let rwdBlack = document.querySelector('#rwdblack');
-  let dropMenu = document.querySelectorAll('.drop-menu');
-  let rwdList = [...document.querySelectorAll('.drop-menu>ul>li')];
-  let rwdLastbutton = document.querySelectorAll('.drop-menu button')
-  let menuText = document.querySelectorAll('.menu-text');
-  let menuCounter = 0;
-  let navCounter;
+ 
  
   
   
@@ -281,10 +294,15 @@
   dropMenu.forEach((item)=>{
     item.addEventListener('transitionend',dropMenuTransition)
   })
-  menuTexts.addEventListener('touchstart',menuTouchStar,false)
-  menuTexts.addEventListener('touchend',menuTouchEnd,false)
+  window.addEventListener('touchstart',menuTouchStar,false)
+  window.addEventListener('touchend',menuTouchEnd,false)
   // menuTexts.addEventListener('touchmove',menuTouchMove,false)
 
+
+  let botDiv = document.querySelectorAll('#bottom>div');
+  let botOutNav = document.querySelectorAll('#bottom .outerNav');
+  let mql = window.matchMedia('(max-width: 768px)');
+  let fourButton = document.querySelectorAll('#bottom>div>button')
 
   function backbutton(){
     menu.hash = '#menu'
@@ -299,11 +317,64 @@
    
           }
   }
+  function botclickHLer(e) {
+    let span = e.currentTarget.querySelector('button span')
+    let h2 = e.currentTarget.querySelector('button h2')
+    let allspan = document.querySelectorAll('#bottom>div button span')
+    let allh2 = document.querySelectorAll('#bottom>div button h2')
+    let outer = e.currentTarget.querySelector('.outerNav')
+    
+    
+    
+    
+    
+    
+    e.target.closest('div') === e.currentTarget  ?span.classList.toggle('active'):'';
+    e.target.closest('div') === e.currentTarget  ?h2.classList.toggle('active'):'';
+    // outer.classList.contains('active') ? outer.classList.remove('active'):'';
+    
+    // span.classList.toggle('active')
+    // h2.classList.toggle('active')
+    
+    allspan.forEach(item=>{
+      item !== span ? item.classList.remove('active'):'';
+    })
+    allh2.forEach(item=>{
+      item !== h2 ? item.classList.remove('active'):'';
+    })
+    botDiv.forEach(item=>{
+      item !== e.currentTarget && item.querySelector('.outerNav')?item.querySelector('.outerNav').classList.remove('active'):'';
+        
+      
+      
+    })
+
+    
+  }
+  function OutNavClickHLer(e) {
+    let outer = e.currentTarget.nextElementSibling;
+    
+    
+    
+   e.target.closest('button') === e.currentTarget && outer ?outer.classList.toggle('active'):'';
+   
+ 
+  //  if(e.target === e.currentTarget || e.currentTarget.children[0]||e.currentTarget.children[1]){
+  //    console.log('yes');
+     
+  //  }
+   
+    
+    
+    
+  }
 
   
 
-  let mql = window.matchMedia('(max-width: 768px)');
+ 
+   
   if(mql.matches){
+    
    
     menuButton.addEventListener('click',backbutton);
     window.addEventListener('hashchange', function(event) {
@@ -326,6 +397,40 @@
     })
     
     rwdBlack.addEventListener('click',backbuttonNav)
+          //底部選單
+    axios.get('image/vr-icon.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        document.querySelector('#bottom>div:nth-child(1) button span').insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/phone.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        document.querySelector('#bottom>div:nth-child(2) button span').insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/study03.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        document.querySelector('#bottom>div:nth-child(3) button span').insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/mail02.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        document.querySelector('#bottom>div:nth-child(4) button span').insertAdjacentHTML("afterbegin", res.data)
+    })
+
+    
+    botDiv.forEach(item=>{
+      item.addEventListener('click',botclickHLer)
+    })
+    fourButton.forEach(item=>{
+      item.addEventListener('click',OutNavClickHLer)
+    })
+    
+
+
+
+    
           //RWD結束
     }
 

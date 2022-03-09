@@ -299,8 +299,10 @@ footer{
     display: flex;
     width: 100%;
     min-height: 100%;
+    height: 2000px;
     background: pink;   
     flex-direction: column;
+    
     
 }
 /* 只有平板以上有 */
@@ -314,6 +316,9 @@ footer{
     opacity: 1;    
  }
  .drop-menu button{
+     display: none;
+ }
+ #bottom{
      display: none;
  }
  /* 結束 */
@@ -371,6 +376,14 @@ footer{
     #menu{
         position: fixed;
         top: 0;
+        z-index: 1;
+        transition: transform 0.1s;
+        
+    }
+    #menu.stiky.down{
+        transform:translateY(-100%);
+        
+        
     }
     
 
@@ -466,7 +479,7 @@ footer{
     }
     .menu-text>span{
         position: absolute;
-        color: #14b119;
+        color:  #363636;
        
         right: 0;
 
@@ -685,7 +698,201 @@ footer{
         margin: 0;
         
     }
+      /* 底部選單 */
+      #bottom{
+          display: flex;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          height: 5rem;
+          width: 100%;
+          
+          background: white;
+          box-shadow: 0px -1px 5px #00000040;
+      }
+      #bottom>div{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 25%;
+         
+          height: 100%;
 
+      }
+      #bottom>div>button{
+        display: flex;
+        
+        width: 70%;
+        height: 100%;
+       
+       
+    
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+      }
+      #bottom>div>button span{
+          display: flex;
+          width: 45%;
+          height: 55%;
+  }
+      #bottom>div>button h2{
+          font-size: 1.1rem;
+          color: rgb(165, 165, 165);
+          margin-top: 5%;
+      }    
+      #bottom>div>button h2{
+        font-size: 1.1rem;
+        color: rgb(165, 165, 165);
+        margin-top: 5%;
+        transition: color 0.75s;
+    }
+    #bottom>div>button h2.active{
+    
+        color: rgb(15, 167, 20);
+        
+    }
+    /* SVG群組 */
+    
+      #bottom>div>button span svg{
+         
+        width: 100%;
+        height: 100%;
+        
+      }
+      #bottom>div>button span svg path,
+      #bottom>div>button span svg rect{
+      
+        transition: all 0.75s;
+
+      }
+      #bottom>div:nth-child(2) button span svg{
+        transform: scale(1.25) translateY(3%);
+
+      }
+    
+      #bottom>div:nth-child(3) button span svg{
+        transform: scale(1.1) translateY(3%);
+
+      }
+      #bottom>div:nth-child(1) button span svg path,
+      #bottom>div:nth-child(1) button span svg rect,
+      #bottom>div:nth-child(2) button span svg path{
+          
+          fill:rgb(165, 165, 165);
+
+
+      }
+      #bottom>div:nth-child(3) button span svg path,
+      #bottom>div:nth-child(3) button span svg rect{
+        stroke:rgb(165, 165, 165);
+        
+        stroke-width:25;
+
+     }
+     #bottom>div:nth-child(3) button span svg path:nth-child(6),
+     #bottom>div:nth-child(3) button span svg path:nth-child(7){
+         fill:rgb(165, 165, 165);
+     }
+     #bottom>div:nth-child(4) button span svg path{
+        stroke:rgb(165, 165, 165);
+        stroke-width:20;
+     }
+
+     #bottom>div:nth-child(1) button span.active svg path,
+     #bottom>div:nth-child(1) button span.active svg rect,
+     #bottom>div:nth-child(2) button span.active svg path{
+         
+        fill:rgb(15, 167, 20);
+
+
+     }
+      
+
+      #bottom>div:nth-child(3) button span.active svg path,
+      #bottom>div:nth-child(3) button span.active svg rect{
+        stroke:rgb(20 177 25);
+      }
+      #bottom>div:nth-child(3) button span.active svg path:nth-child(7),
+      #bottom>div:nth-child(3) button span.active svg path:nth-child(6){
+        fill:rgb(15, 167, 20);
+    }
+
+    #bottom>div:nth-child(4) button span.active svg path{
+        stroke:rgb(15, 167, 20);
+       
+     }
+     /*常用選項*/
+     
+
+     .outerNav{
+         position: fixed;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         width: 100%;
+         max-height: 30%;
+         bottom: 7rem;
+         left: 0;
+         
+         flex-direction: column;
+         visibility: hidden;
+         opacity: 0;
+         transition: opacity 0.4s ,transform 0.7s;
+         transform: translateY(30%);
+         
+
+     }
+     .outerNav.active{
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0%);
+     
+     }
+     .bot_popMenu{
+         width: 80%;
+         
+         box-shadow: 0px 0px 4px rgba(43, 43, 43, 0.486) ;
+         border-radius: 10px;
+         background: white;
+         padding: 4.2% 0 3%;
+         
+
+    }
+     
+     .bot_popMenu>div{
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         width: 100%;
+         flex: 1;
+         
+    
+       
+     }
+     .bot_popMenu>div:nth-child(1){
+         margin: 0 0 5% ;
+
+     }
+     .bot_popMenu>div>button{
+         display: flex;
+         flex:1;
+         
+         
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+     }
+     
+     .bot_popMenu>div>button>span{
+         display: flex;
+         width: 5rem;
+         height: 3rem;
+         background: saddlebrown;
+         
+     }
+     
 
     /* RWD結束 */
 } 

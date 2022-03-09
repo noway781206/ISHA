@@ -6,54 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <style>
-    h1{
+
+    .new{
         display: flex;
-        height: 200px;
-        width: 200px;
-        background-color: pink;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
+        width: 600px;
+        height: 300px;
+        background: pink;
+        position: relative;
+        margin: 80px auto;
+       
     }
+    .new.active{
+        z-index: 99;
+    }
+ 
     .moveBox{
         animation-name: myNEWmove
     } 
     .moveBox2{
         animation-name: myNEWmove2
     } 
-
-    @keyframes myNEWmove {
-  from {left: 0px;}
-  to {left: 200px;}
-}
-@keyframes myNEWmove2 {
-  0% {
-      left: 200px;
+    .inner{
+        display: flex;
+        width: 600px;
+        height: 100%;
+        
+       
     }
-  50%{
-    transform: translateY(30vh);
-
-  }    
+    .inner:nth-child(1){
+        background-color: saddlebrown;
+       
+    }
+        .inner:nth-child(2){
+        background-color: darkmagenta;
+    }
+        .inner:nth-child(3){
+        background-color: aqua;
       
-    
-  100% {top: 0px;}
-}
-h2{
-    position: absolute;
-    top: 300px;
-    background: sandybrown;
-}
-@media only screen and (max-width: 768px) {
-    h1{
-        height: 150px;
-        width: 150px;
     }
-}
+    .cotain{
+        display: flex;
+        width:1800px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        opacity: 0.5;
+        transform: translateX(0);
+     
+        
+    }
+
 </style>
 </head>
 <body>
-    <h1 id="">456</h1>
-    <h2>123132132132</h2>
+   
+    <div class="new">
+        <div class="cotain">
+        <div class="inner"></div>
+        <div class="inner"></div>
+        <div class="inner"></div>
+       </div>
+    </div>
+
+
+
 <script src="test02.js"></script>
 </body>
 </html>
