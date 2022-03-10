@@ -1,0 +1,19 @@
+{
+  "name": "isha",
+  "version": "1.0.0",
+  "description": "ISHA",
+  "main": "always.js",
+  "scripts": {
+    "test": "ISHA"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noway781206/ISHA.git"
+  },
+  "author": "Ming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noway781206/ISHA/issues"
+  },
+  "homepage": "https://github.com/noway781206/ISHA#readme"
+}

@@ -39,8 +39,13 @@ let lastScrollTop = 0;
   let rwdList = [...document.querySelectorAll('.drop-menu>ul>li')];
   let rwdLastbutton = document.querySelectorAll('.drop-menu button')
   let menuText = document.querySelectorAll('.menu-text');
-  let menuCounter = 0;
-  let navCounter;
+  let touchstartX,touchstartY,touchendX,touchendY;
+  let newX,newY,percent;
+  let switcher = false;  
+  let pullSwitcher =false;
+  let singleSwitcher = false;
+  let touchSwicher = [...dropMenu].some(e=>e.classList.contains('atcive'));
+
   function menuOffset(){
     
     
@@ -113,6 +118,9 @@ let lastScrollTop = 0;
     menuTexts.classList.add('menuPop');
     rwdBlack.classList.add('blackPop');
     document.body.style.overflow = 'hidden';
+    menuTexts.addEventListener('touchstart',menuTouchStar,false)
+    
+    
     
     
 
@@ -141,6 +149,27 @@ let lastScrollTop = 0;
       let removespan = item.classList.contains('active')
       removespan? item.classList.remove('active'):'';
     })
+    menuTexts.style.transform = null; 
+    menuTexts.style.transition =null; 
+    [...dropMenu].filter((a)=>{
+      return a.classList.contains('atcive')
+    }).forEach(a=>
+      {
+        a.classList.remove('atcive')
+        a.style.transform = !null? null :'' ;
+        a.style.transition  = !null? null :'' ;        
+      }) 
+      menuTexts.removeEventListener('touchstart',menuTouchStar,false)
+      menuTexts.removeEventListener('touchmove',menuTouchMove)
+      window.removeEventListener('touchend',menuTouchEnd,false)
+      
+    // menuTexts.addEventListener('transitionend',(e)=>{
+    //   e.target === menuTexts?backbuttonNav():"";
+      
+    // })
+    
+    
+    
    
     
     
@@ -196,9 +225,7 @@ let lastScrollTop = 0;
     
     
   }
-  let touchstartX,touchstartY,touchendX,touchendY;
-  
-  let touchSwicher = [...dropMenu].some(e=>e.classList.contains('atcive'));
+ 
 
 // let touchboolean = [];
 // let touchSwitcher = touchboolean.some(e=>e);
@@ -219,63 +246,294 @@ let lastScrollTop = 0;
 
   
   
-  
-  
+
+
+
+
 
 
   function handleGesture(e) {
-    // touchboolean = [];
-    // test()
-    // if(touchboolean.some(e=>e)) return
-    // if(touchSwicher) return
+   
+    // if(menuTexts.classList.contains('menuPop')) return
+    console.log('handleGesture');
+    
+   
+      if(
+      [...dropMenu].some(e=>e.classList.contains('atcive')) !== true
+      &&location.hash ==="#menu"
+      &&switcher
       
- 
-    if (touchendX+15 < touchstartX && 
-      25 > touchendY - touchstartY && 
-      touchendY - touchstartY > -25 &&
+    
+      && percent > 30
+      ){
      
+     topButtonHLer()
+     window.history.go(-1)
+     pullSwitcher = false
+     menuTexts.removeEventListener('touchmove',menuTouchMove)
+     console.log('1 and',percent);
+     
+     
+    
+     
+             
+    }else if([...dropMenu].some(e=>e.classList.contains('atcive')) !== true
+            &&location.hash ==="#menu"
+            && percent <= 30
+            && pullSwitcher
+            &&switcher
+            ){
+      menuTexts.style.transform = `translateX(0%)`
+      console.log('2');
+    }
+       
+    if (touchendX+15 < newX && 
+      25 > touchendY - newY && 
+      touchendY - newY > -25 && 
+      switcher &&
+      pullSwitcher &&
+      singleSwitcher &&
+          
       [...dropMenu].some(e=>e.classList.contains('atcive')) !== true) {
       topButtonHLer()
-        // console.log('Swiped Left');
-    }if(touchendX+15 < touchstartX && 
-             25 > touchendY - touchstartY &&
-             touchendY - touchstartY > -25 &&
-              [...dropMenu].some(e=>e.classList.contains('atcive')) ===true){
-                [...dropMenu].filter((e)=>{
-                  return e.classList.contains('atcive')
-                }).forEach(e=>e.classList.toggle('atcive'))
-    }
+      menuTexts.removeEventListener('touchmove',menuTouchMove)
+
+      window.history.go(-1)
+      pullSwitcher = false
+      console.log('3');
+    }  
+
+
+
+
+
+
+    if(
+      [...dropMenu].some(e=>e.classList.contains('atcive')) ===true    
+      && menuTexts.classList.contains('menuPop') === true
+      &&location.hash ==="#menu"
+      &&percent >30
+      ){
+     
+     [...dropMenu].filter((e)=>{
+      return e.classList.contains('atcive')
+    }).forEach(e=>
+      {
+        e.classList.remove('atcive')
+        e.style.transform = !null? null :'' ;
+        e.style.transition  = !null? null :'' ;
+        pullSwitcher = false
+       
+        
+        
+        
+      })
+     
+             
+    }else if( 
+      [...dropMenu].some(e=>e.classList.contains('atcive')) ===true
+      &&menuTexts.classList.contains('menuPop') === true
+      &&location.hash ==="#menu"
+      &&percent <= 30){
+     
+     [...dropMenu].filter((e)=>{
+       return e.classList.contains('atcive')
+     }).forEach(e=>{e.style.transform = !null? null :'' ;
+     e.style.transition  = !null? null :'' ;
+     })
+     
+   }
+
+   if(touchendX+15 < newX && 
+    25 > touchendY - newY && 
+    touchendY - newY > -25 && 
+    switcher &&
+    pullSwitcher &&
+    singleSwitcher &&
+    menuTexts.classList.contains('menuPop') === true&&
+     [...dropMenu].some(e=>e.classList.contains('atcive')) ===true){
+       [...dropMenu].filter((e)=>{
+         return e.classList.contains('atcive')
+       }).forEach(e=>{e.classList.remove('atcive')
+     
+                       e.style.transform = !null? null :'' ;
+                       e.style.transition  = !null? null :'' ;
+                       pullSwitcher = false })
+}
+
+
+    // else if(touchendX+15 < newX && 
+    //          25 > touchendY - touchstartY &&
+    //          touchendY - touchstartY > -25 &&
+    //          menuTexts.classList.contains('menuPop') === true&&
+    //           [...dropMenu].some(e=>e.classList.contains('atcive')) ===true){
+    //             [...dropMenu].filter((e)=>{
+    //               return e.classList.contains('atcive')
+    //             }).forEach(e=>{e.classList.remove('atcive')
+              
+    //                             e.style.transform = !null? null :'' ;
+    //                             e.style.transition  = !null? null :'' ; })
+    //  }else if( [...dropMenu].some(e=>e.classList.contains('atcive')) ===true
+    //  &&percent < 25){
+      
+    //   [...dropMenu].filter((e)=>{
+    //     return e.classList.contains('atcive')
+    //   }).forEach(e=>{e.style.transform = !null? null :'' ;
+    //   e.style.transition  = !null? null :'' ;
+    //   })
+      
+    // }
  
   
   
   
   
   }
+  
+   
+  function menuTouchMove(e) {
+
+
+  
+      touchsMovingY = e.changedTouches[0].screenY;
+      touchsMovingX = e.changedTouches[0].screenX;
+      if(!switcher){
+        let timer = setTimeout(() => {
+          newX = touchsMovingX
+          newY = touchsMovingY
+        
+        }, 20);
+        }
+      
+      percent = Math.floor((newX - touchsMovingX) / window.screen.width *100);
+    
+      if (newY - touchsMovingY > -20
+        &&newY - touchsMovingY < 20
+        &&newX - touchsMovingX >20
+        &&location.hash ==='#menu') {
+          switcher = true
+          pullSwitcher = true
+          singleSwitcher = true
+      }  
+
+    
+
+      if(
+        
+         [...dropMenu].some(e=>e.classList.contains('atcive')) !== true
+          && percent <= 100 
+          && percent >= 0      
+              
+          && switcher     
+         ){
+          menuTexts.style.transition ='none'
+          menuTexts.style.transform = `translateX(-${percent}%)`
+          setTimeout(() => {
+            singleSwitcher = false
+          }, 50);
+          
+         }else if([...dropMenu].some(e=>e.classList.contains('atcive')) === true
+          && percent <= 100 
+          && percent >= 0
+          
+          && switcher
+        
+        
+       ){
+        [...dropMenu].filter((e)=>{
+          return e.classList.contains('atcive')
+        }).forEach(e=>
+          {
+            e.style.transition ='none'
+            e.style.transform = `translateX(-${percent}%)`
+            setTimeout(() => {
+              singleSwitcher = false
+            }, 50);
+          })
+      
+        
+       }
+       
+       
+       
+      
+
+
+    }
+
   function menuTouchStar(e){
-    touchstartX = e.changedTouches[0].screenX;
+    
+  //window.addEventListener('touchstart',function (e) {
+    
+       touchstartX = e.changedTouches[0].screenX;
   touchstartY = e.changedTouches[0].screenY;
+  newX = touchstartX
+  newY = touchstartY
+  
+  menuTexts.addEventListener('touchmove',menuTouchMove)
+  //})
+  window.addEventListener('touchend',menuTouchEnd,false)
+ 
+  // window.addEventListener('touchend',menuTouchEnd,false)
   
   }
-  function menuTouchMove(e) {
-    setTimeout(function () {
-    touchstartY = e.changedTouches[0].screenY;
-    touchstartX = e.changedTouches[0].screenX;
-  },150)
-  }
+  
   function menuTouchEnd(e) {
+    // let menuTarget = document.querySelector('.menu-texts.menuPop')
     touchendX = e.changedTouches[0].screenX;
   touchendY = e.changedTouches[0].screenY;
+  
+//  if(
+//    [...dropMenu].some(e=>e.classList.contains('atcive')) !== true
+//    &&menuTexts.classList.contains('menuPop')
+//    &&percent >25
+//    ){
+//     // menuTexts.removeAttribute("style");  
+    
+//     menuTexts.style.transform = null; 
+//     menuTarget.style.transition =null;
+    
+    
+    
+   
+//     // window.history.go(-1);
+//  }else if([...dropMenu].some(e=>e.classList.contains('atcive')) !== true
+//  &&menuTexts.classList.contains('menuPop')){
+//   menuTexts.style.transform = `translateX(0%)`
+//  }
+ 
+  handleGesture();
+  switcher = false
+  pullSwitcher = false
+  singleSwitcher= false
+  
+  
+ 
+  
+  
+  
+  // handleGesture();
+  // if(percent > 20){
+  //   menuTarget.style.transform = `translateX(0%)`
+  // }else{
+  //   menuTarget.style.transform = `translateX(-100%)`
+  // }
+  
+  
   // setTimeout(function () {
   //   touchstartY = touchendY;
   //   touchstartX = touchendX;
   // },50)
-  handleGesture();
+  
   }
   
   
   window.addEventListener('scroll',menuOffset)
   menuButton.addEventListener('click',menuButtonHLer)
   rwdTopButton.forEach((button)=>{
+    // menuTexts.removeEventListener('touchstart',menuTouchStar,false)
+    // menuTexts.removeEventListener('touchmove',menuTouchMove)
+    // window.removeEventListener('touchend',menuTouchEnd,false)
     button.addEventListener('click',topButtonHLer)
   })
   
@@ -294,8 +552,8 @@ let lastScrollTop = 0;
   dropMenu.forEach((item)=>{
     item.addEventListener('transitionend',dropMenuTransition)
   })
-  window.addEventListener('touchstart',menuTouchStar,false)
-  window.addEventListener('touchend',menuTouchEnd,false)
+  // menuTexts.addEventListener('touchstart',menuTouchStar,false)
+  // window.addEventListener('touchend',menuTouchEnd,false)
   // menuTexts.addEventListener('touchmove',menuTouchMove,false)
 
 
@@ -311,9 +569,11 @@ let lastScrollTop = 0;
     
     
   }
-  function backbuttonNav(){
+  function backbuttonNav(e){
     if(menuTexts.classList.contains('menuPop')!== true&&location.hash ==="#menu"){
       window.history.go(-1);
+      
+      
    
           }
   }
@@ -381,7 +641,10 @@ let lastScrollTop = 0;
       
       
      
-      if(menuTexts.classList.contains('menuPop')=== true  &&location.hash ===""){
+      if(menuTexts.classList.contains('menuPop')=== true  
+          &&location.hash ===""
+          
+          ){
 
         topButtonHLer();
         
@@ -392,9 +655,10 @@ let lastScrollTop = 0;
       
 
    
-    rwdTopButton.forEach((button)=>{
-      button.addEventListener('click',backbuttonNav)
-    })
+    // rwdTopButton.forEach((button)=>{
+
+    //   button.addEventListener('click',(backbuttonNav))
+    // })
     
     rwdBlack.addEventListener('click',backbuttonNav)
           //底部選單
@@ -430,7 +694,6 @@ let lastScrollTop = 0;
 
 
 
-    
           //RWD結束
     }
 

@@ -1,6 +1,6 @@
 (async () => {
     //開始
-  
+  let verson = '?ver=20220311_02'
  
   //pre開始
   
@@ -42,7 +42,7 @@ axios.get('header.html')
     console.error(error) 
 }).then(()=>{
     const jsScript = document.createElement('script')
-    jsScript.src ='always.js'
+    jsScript.src ='always.js'+verson
     document.body.append(jsScript)
 })
 
