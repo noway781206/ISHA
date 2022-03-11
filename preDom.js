@@ -1,6 +1,6 @@
 (async () => {
     //開始
-  let verson = '?ver=20220311_02'
+  let verson = '?ver=20220312_04'
  
   //pre開始
   

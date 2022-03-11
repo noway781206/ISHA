@@ -39,11 +39,14 @@ let lastScrollTop = 0;
   let rwdList = [...document.querySelectorAll('.drop-menu>ul>li')];
   let rwdLastbutton = document.querySelectorAll('.drop-menu button')
   let menuText = document.querySelectorAll('.menu-text');
-  let touchstartX,touchstartY,touchendX,touchendY;
+  let touchstartX,touchstartY,touchendX,touchendY,pullX,pullY;
   let newX,newY,percent;
   let switcher = false;  
   let pullSwitcher =false;
   let singleSwitcher = false;
+
+  let SwitchY = true;
+  let switchX = false;
   let touchSwicher = [...dropMenu].some(e=>e.classList.contains('atcive'));
 
   function menuOffset(){
@@ -160,7 +163,7 @@ let lastScrollTop = 0;
         a.style.transition  = !null? null :'' ;        
       }) 
       menuTexts.removeEventListener('touchstart',menuTouchStar,false)
-      menuTexts.removeEventListener('touchmove',menuTouchMove)
+      window.removeEventListener('touchmove',menuTouchMove)
       window.removeEventListener('touchend',menuTouchEnd,false)
       
     // menuTexts.addEventListener('transitionend',(e)=>{
@@ -227,22 +230,7 @@ let lastScrollTop = 0;
   }
  
 
-// let touchboolean = [];
-// let touchSwitcher = touchboolean.some(e=>e);
-// let test = ()=>{ [...dropMenu].forEach(item=>{
-//   if(item.classList.contains('atcive')=== true){
-//     touchboolean.push(true)  
-//   }else{
-//     touchboolean.push(false)  
-//   }
-// })} 
-// let result = ()=>{
-//   touchboolean = [];
-//   test()
-//   if([...dropMenu].some(e=>e.classList.contains('atcive'))) return
-//   console.log('true');
-  
-//     }
+
 
   
   
@@ -251,10 +239,9 @@ let lastScrollTop = 0;
 
 
 
-
   function handleGesture(e) {
    
-    // if(menuTexts.classList.contains('menuPop')) return
+   
     console.log('handleGesture');
     
    
@@ -270,8 +257,8 @@ let lastScrollTop = 0;
      topButtonHLer()
      window.history.go(-1)
      pullSwitcher = false
-     menuTexts.removeEventListener('touchmove',menuTouchMove)
-     console.log('1 and',percent);
+     window.removeEventListener('touchmove',menuTouchMove)
+     console.log('1 and',percent,switcher);
      
      
     
@@ -287,16 +274,16 @@ let lastScrollTop = 0;
       console.log('2');
     }
        
-    if (touchendX+15 < newX && 
-      25 > touchendY - newY && 
-      touchendY - newY > -25 && 
+    if (touchendX+15 < pullX && 
+      25 > touchendY - pullY && 
+      touchendY - pullY > -25 && 
       switcher &&
       pullSwitcher &&
       singleSwitcher &&
           
       [...dropMenu].some(e=>e.classList.contains('atcive')) !== true) {
       topButtonHLer()
-      menuTexts.removeEventListener('touchmove',menuTouchMove)
+      window.removeEventListener('touchmove',menuTouchMove)
 
       window.history.go(-1)
       pullSwitcher = false
@@ -344,9 +331,9 @@ let lastScrollTop = 0;
      
    }
 
-   if(touchendX+15 < newX && 
-    25 > touchendY - newY && 
-    touchendY - newY > -25 && 
+   if(touchendX+15 < pullX && 
+    25 > touchendY - pullY && 
+    touchendY - pullY > -25 && 
     switcher &&
     pullSwitcher &&
     singleSwitcher &&
@@ -362,27 +349,6 @@ let lastScrollTop = 0;
 }
 
 
-    // else if(touchendX+15 < newX && 
-    //          25 > touchendY - touchstartY &&
-    //          touchendY - touchstartY > -25 &&
-    //          menuTexts.classList.contains('menuPop') === true&&
-    //           [...dropMenu].some(e=>e.classList.contains('atcive')) ===true){
-    //             [...dropMenu].filter((e)=>{
-    //               return e.classList.contains('atcive')
-    //             }).forEach(e=>{e.classList.remove('atcive')
-              
-    //                             e.style.transform = !null? null :'' ;
-    //                             e.style.transition  = !null? null :'' ; })
-    //  }else if( [...dropMenu].some(e=>e.classList.contains('atcive')) ===true
-    //  &&percent < 25){
-      
-    //   [...dropMenu].filter((e)=>{
-    //     return e.classList.contains('atcive')
-    //   }).forEach(e=>{e.style.transform = !null? null :'' ;
-    //   e.style.transition  = !null? null :'' ;
-    //   })
-      
-    // }
  
   
   
@@ -392,42 +358,78 @@ let lastScrollTop = 0;
   
    
   function menuTouchMove(e) {
-
+    
 
   
+
+    
       touchsMovingY = e.changedTouches[0].screenY;
       touchsMovingX = e.changedTouches[0].screenX;
+      setTimeout(()=>{
+        pullX = touchsMovingX;
+        pullY = touchsMovingY;
+      },500)
+         
       if(!switcher){
-        let timer = setTimeout(() => {
+        setTimeout(()=>{
           newX = touchsMovingX
           newY = touchsMovingY
-        
-        }, 20);
+        },100)
+          
+          
+       
         }
       
-      percent = Math.floor((newX - touchsMovingX) / window.screen.width *100);
+      percent = Math.floor((touchstartX - touchsMovingX) / window.screen.width *100)
+      let prepercent = Math.floor((touchstartX - touchsMovingX) / window.screen.width *100)
+      
+   
+ 
     
-      if (newY - touchsMovingY > -20
-        &&newY - touchsMovingY < 20
-        &&newX - touchsMovingX >20
-        &&location.hash ==='#menu') {
-          switcher = true
+    
+     
+      
+    
+      if (
+        // newY - touchsMovingY > -20
+        // &&newY - touchsMovingY < 20
+        // &&newX - touchsMovingX >20
+        location.hash ==='#menu') {
+          // switcher = true
           pullSwitcher = true
           singleSwitcher = true
+          // SwitchY = true
       }  
 
-    
 
-      if(
+      
+      
+       
+      
+     
+      if((newY - touchsMovingY < -5 || newY - touchsMovingY > 5) 
+        &&newX - touchsMovingX < 90
+        &&newX - touchsMovingX > -90
+        &&location.hash ==='#menu'
+        &&SwitchY
+        ){
+          switchX = false         
+          console.log('now');
+          
+         
+          
+      }else if(
         
          [...dropMenu].some(e=>e.classList.contains('atcive')) !== true
-          && percent <= 100 
-          && percent >= 0      
-              
-          && switcher     
+          // && percent <= 100 
+          // && percent >= 0      
+            &&switchX
+          // && switcher     
          ){
+          SwitchY = false
           menuTexts.style.transition ='none'
           menuTexts.style.transform = `translateX(-${percent}%)`
+          switcher = true;
           setTimeout(() => {
             singleSwitcher = false
           }, 50);
@@ -436,7 +438,7 @@ let lastScrollTop = 0;
           && percent <= 100 
           && percent >= 0
           
-          && switcher
+          && switchX
         
         
        ){
@@ -444,6 +446,8 @@ let lastScrollTop = 0;
           return e.classList.contains('atcive')
         }).forEach(e=>
           {
+            SwitchY = false
+            switcher = true;
             e.style.transition ='none'
             e.style.transform = `translateX(-${percent}%)`
             setTimeout(() => {
@@ -462,50 +466,41 @@ let lastScrollTop = 0;
     }
 
   function menuTouchStar(e){
+    switchX = true
+    // e.stopPropagation
+    // menuTexts.removeEventListener('touchstart',menuTouchStar,true)
+
+  
     
-  //window.addEventListener('touchstart',function (e) {
-    
-       touchstartX = e.changedTouches[0].screenX;
+  touchstartX = e.changedTouches[0].screenX;
   touchstartY = e.changedTouches[0].screenY;
   newX = touchstartX
   newY = touchstartY
+  pullX = touchstartX
+  pullY =touchstartY
   
-  menuTexts.addEventListener('touchmove',menuTouchMove)
-  //})
+  // menuTexts.addEventListener('touchmove',menuTouchMove)
+  window.addEventListener('touchmove',menuTouchMove)
+ 
   window.addEventListener('touchend',menuTouchEnd,false)
  
-  // window.addEventListener('touchend',menuTouchEnd,false)
+  
   
   }
   
   function menuTouchEnd(e) {
-    // let menuTarget = document.querySelector('.menu-texts.menuPop')
+  
     touchendX = e.changedTouches[0].screenX;
   touchendY = e.changedTouches[0].screenY;
   
-//  if(
-//    [...dropMenu].some(e=>e.classList.contains('atcive')) !== true
-//    &&menuTexts.classList.contains('menuPop')
-//    &&percent >25
-//    ){
-//     // menuTexts.removeAttribute("style");  
-    
-//     menuTexts.style.transform = null; 
-//     menuTarget.style.transition =null;
-    
-    
-    
-   
-//     // window.history.go(-1);
-//  }else if([...dropMenu].some(e=>e.classList.contains('atcive')) !== true
-//  &&menuTexts.classList.contains('menuPop')){
-//   menuTexts.style.transform = `translateX(0%)`
-//  }
- 
+
+ SwitchY = true
   handleGesture();
   switcher = false
   pullSwitcher = false
   singleSwitcher= false
+  
+  SwitchX = false;
   
   
  
