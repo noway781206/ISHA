@@ -14,6 +14,7 @@
         background: pink;
         position: relative;
         margin: 80px auto;
+        overflow: hidden;
        
     }
     .new.active{
@@ -31,9 +32,11 @@
         width: 600px;
         height: 100%;
         
+        
        
     }
-    .inner:nth-child(1){
+    .inner:nth-child(1),
+    .inner:nth-child(4){
         background-color: saddlebrown;
        
     }
@@ -46,13 +49,14 @@
     }
     .cotain{
         display: flex;
-        width:1800px;
+        width:3600px;
         height: 100%;
         position: absolute;
         top: 0;
         left: -100%;
         opacity: 0.5;
         transform: translateX(0);
+       
          
         
     }
@@ -64,15 +68,15 @@
 </head>
 <body>
    
-    <!-- <div class="new">
+    <div class="new">
         <div class="cotain">
-        <div class="inner"></div>
-        <div class="inner"></div>
-        <div class="inner"></div>
+        <div class="inner">Slide 1</div>
+        <div class="inner">Slide 2</div>
+        <div class="inner">Slide 3</div>
        </div>
-    </div> -->
+    </div>
 
-    <div>123</div>
+    <!-- <div>123</div> -->
  
 
 

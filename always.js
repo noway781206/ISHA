@@ -1,4 +1,4 @@
-
+{
   //     fetch("image/social-color-1_logo-facebook.svg")
   // .then(response => response.text())
   // .then(svg => document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", svg));
@@ -26,6 +26,40 @@
     console.log(myCookie);
     
   }
+  const clickRwd = function(targetEl,func){
+    let X,Y,endX,endY,rwdSwicher;
+    function touchClickStar(e) {
+      X = e.changedTouches[0].screenX;
+      Y = e.changedTouches[0].screenY;    
+    }
+    function touchClickEnd(e) {
+      endX = e.changedTouches[0].screenX;
+      endY = e.changedTouches[0].screenY;
+      if(
+        (endX - X > -5 & endX - X < 5) &&
+        (endY - Y > -5 & endY - Y < 5)
+        ){
+          // targetEl.addEventListener('touchend',func)
+          (func)(e)                        
+      }  
+    }
+  
+
+    if ('ontouchstart' in document.documentElement === true){
+     
+      
+      return targetEl.addEventListener('touchstart',touchClickStar),
+      targetEl.addEventListener('touchend',touchClickEnd)
+     
+
+  
+     
+    }else{
+      return targetEl.addEventListener('click',func);   
+   
+    }
+  }
+  const doc = (taget)=> document.querySelector(taget);
 let lastScrollTop = 0;
  let menu = document.querySelector('#menu');
   let topBar = document.querySelector('#topBar');
@@ -56,7 +90,8 @@ let lastScrollTop = 0;
     window.pageYOffset > lastScrollTop && window.scrollY > 62
     ? menu.classList.add('down') 
     : window.pageYOffset < lastScrollTop 
-    ? menu.classList.remove('down')  
+    // ? menu.classList.remove('down')  
+    ?doc('.rwd-notice').classList.remove('active')
     : '';
   
     lastScrollTop = window.pageYOffset <= 0 ? 0 : window.pageYOffset;
@@ -218,12 +253,20 @@ let lastScrollTop = 0;
     let a = e.currentTarget.parentElement
    
     a.classList.remove('atcive')
+    document.querySelectorAll('.innerText').forEach((item)=>{
+      let a = item.classList.contains('active');
+      a ? item.classList.remove('active'):'';
+      
+    })
     
   }
   function dropMenuTransition(e) {
     if(e.currentTarget.classList.contains('atcive') !== true &&
-    e.propertyName.includes('transform')){
+    e.propertyName.includes('transform')&&
+    e.currentTarget === e.target){
       menuTexts.querySelector('.logo').style.display='flex';
+      console.log(e);
+      
     }
     
     
@@ -258,7 +301,7 @@ let lastScrollTop = 0;
      window.history.go(-1)
      pullSwitcher = false
      window.removeEventListener('touchmove',menuTouchMove)
-     console.log('1 and',percent,switcher);
+     console.log('1');
      
      
     
@@ -300,6 +343,7 @@ let lastScrollTop = 0;
       && menuTexts.classList.contains('menuPop') === true
       &&location.hash ==="#menu"
       &&percent >30
+      &&switcher
       ){
      
      [...dropMenu].filter((e)=>{
@@ -309,7 +353,14 @@ let lastScrollTop = 0;
         e.classList.remove('atcive')
         e.style.transform = !null? null :'' ;
         e.style.transition  = !null? null :'' ;
-        pullSwitcher = false
+        pullSwitcher = false;
+        document.querySelectorAll('.innerText').forEach((item)=>{
+          let a = item.classList.contains('active');
+          a ? item.classList.remove('active'):'';
+          
+        })
+        
+        console.log(4);
        
         
         
@@ -327,6 +378,12 @@ let lastScrollTop = 0;
        return e.classList.contains('atcive')
      }).forEach(e=>{e.style.transform = !null? null :'' ;
      e.style.transition  = !null? null :'' ;
+     document.querySelectorAll('.innerText').forEach((item)=>{
+      let a = item.classList.contains('active');
+      a ? item.classList.remove('active'):'';
+      
+    })
+     console.log(5);
      })
      
    }
@@ -342,6 +399,7 @@ let lastScrollTop = 0;
        [...dropMenu].filter((e)=>{
          return e.classList.contains('atcive')
        }).forEach(e=>{e.classList.remove('atcive')
+     console.log(6);
      
                        e.style.transform = !null? null :'' ;
                        e.style.transition  = !null? null :'' ;
@@ -414,7 +472,7 @@ let lastScrollTop = 0;
         &&SwitchY
         ){
           switchX = false         
-          console.log('now');
+      
           
          
           
@@ -565,12 +623,13 @@ let lastScrollTop = 0;
     
   }
   function backbuttonNav(e){
-    if(menuTexts.classList.contains('menuPop')!== true&&location.hash ==="#menu"){
-      window.history.go(-1);
+    // if(menuTexts.classList.contains('menuPop')!== true&&location.hash ==="#menu"){
+    //   window.history.go(-1);
       
       
    
-          }
+    //       }
+    window.history.go(-1);
   }
   function botclickHLer(e) {
     let span = e.currentTarget.querySelector('button span')
@@ -623,6 +682,17 @@ let lastScrollTop = 0;
     
     
   }
+  function menuRwdNotice(e) {
+    if(e.currentTarget !== e.target)return
+    let rwdNotice = e.currentTarget.classList;
+    rwdNotice.contains('down')? doc('.rwd-notice').classList.add('active') :'';
+   
+    // !rwdNotice?doc('.rwd-notice').classList.remove('active') :'';
+    
+    
+    
+  }
+
 
   
 
@@ -650,10 +720,10 @@ let lastScrollTop = 0;
       
 
    
-    // rwdTopButton.forEach((button)=>{
+    rwdTopButton.forEach((button)=>{
 
-    //   button.addEventListener('click',(backbuttonNav))
-    // })
+      button.addEventListener('touchstart',(backbuttonNav))
+    })
     
     rwdBlack.addEventListener('click',backbuttonNav)
           //底部選單
@@ -680,12 +750,26 @@ let lastScrollTop = 0;
 
     
     botDiv.forEach(item=>{
-      item.addEventListener('click',botclickHLer)
+      clickRwd(item,botclickHLer)
+      // item.addEventListener('click',botclickHLer)
     })
     fourButton.forEach(item=>{
-      item.addEventListener('click',OutNavClickHLer)
+      clickRwd(item,OutNavClickHLer)
+      // item.addEventListener('click',OutNavClickHLer)
+    })
+    menu.addEventListener('transitionend',menuRwdNotice)
+    doc('.rwd-notice').addEventListener('transitionend',(e)=>{
+        if(e.currentTarget.classList.contains('active'))return
+        e.propertyName === 'transform' ? menu.classList.remove('down') : '';
+       
+        
+        
+        
+        
     })
     
+
+
 
 
 
@@ -695,4 +779,4 @@ let lastScrollTop = 0;
   
   
   // 結束
-  
+}

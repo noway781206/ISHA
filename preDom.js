@@ -1,7 +1,8 @@
 (async () => {
     //開始
-  let verson = '?ver=20220312_04'
- 
+  let verson = '?ver=20220316_02'
+
+  
   //pre開始
   
 //   fetch('header.html')
@@ -42,8 +43,11 @@ axios.get('header.html')
     console.error(error) 
 }).then(()=>{
     const jsScript = document.createElement('script')
+    const jsScript2 = document.createElement('script')
     jsScript.src ='always.js'+verson
+    jsScript2.src ='index.js'+verson
     document.body.append(jsScript)
+    document.body.append(jsScript2)
 })
 
 axios.get('footer.html')

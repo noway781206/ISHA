@@ -48,101 +48,126 @@
 
 
 //第二個
-// let outer = document.querySelector('.new');
-// let inner = document.querySelectorAll('.new .inner');
-// let cotain = document.querySelector('.cotain');
-// let outpercent;
 
-
-// let x = 0,star;
-// let drawing = false;
-
-
-//   outer.addEventListener('mousedown',(e)=>{  
-//   e.preventDefault(); 
-//   console.log(e,window.event);
   
-//   star = e.clientX;
-//   document.addEventListener('mouseup',moveEnd)
-//   document.addEventListener('mousemove',moveIng);
-//  });
-//  let leftInit = -100;
-//   function moveIng(e){  
-//     x = e.clientX;
-//     let percent = Math.floor((star - x) / outer.offsetWidth *-100)
-//     outpercent = percent;
-//     // cotain.style.transform = `translateX(${percent/3}%)`
-//     cotain.style.left = `${leftInit+percent}%`;
-//     console.log(star,x,percent);  
-//   }
+
+let outer = document.querySelector('.new');
+let inner = document.querySelectorAll('.new .inner');
+let cotain = document.querySelector('.cotain');
+let index = 0;
+let outpercent;
+let changePage = 23;
+let leftInit = -100;
+let x = 0,star;
+let drawing = false;
+let cloneFirst = inner[0].cloneNode(true);
+let cloneLast =  inner[inner.length-1].cloneNode(true);
+cotain.insertAdjacentElement('beforeend', cloneFirst);
+cotain.insertAdjacentElement('afterbegin', cloneLast);
+// cotain.appendChild(cloneFirst)
+const mousedownRwd = (function () {
+  return 'ontouchstart' in document.documentElement 
+          ? 'touchstart'
+          :  'mousedown'
+})()
+const mouseupRwd = (function () {
+  return 'ontouchstart' in document.documentElement 
+          ? 'touchend'
+          :  'mouseup'
+})()
+const mousemoveRwd = (function () {
+  return 'ontouchstart' in document.documentElement 
+          ? 'touchmove'
+          :  'mousemove'
+})()
+cotain.addEventListener('transitionend',function (e) {
+  cotain.classList.remove('active');
+  console.log(e);
   
-//   function moveEnd(e){
-//     cotain.classList.add('active');
-//     leftInit< 0 && outpercent > 30 ? cotain.style.left = `${leftInit+100}%`:
-//     leftInit > -200 && outpercent < -30? cotain.style.left = `${leftInit-100}%`:
-//     cotain.style.left = `${leftInit}%`;
-
-//     leftInit< 0 && outpercent > 30 ? leftInit += 100:
-//     leftInit > -200 && outpercent < -30? leftInit += -100:
-//     '';
-//     cotain.addEventListener('transitionend',function () {
-//       cotain.classList.remove('active');
-//     })
-
-    
-    
-     
-//       document.removeEventListener('mouseup',moveEnd)
-//     document.removeEventListener('mousemove',moveIng)
-//     }
-
-
-
-
-
-// JS
-let div = document.querySelector('div')
-let touchstartX,touchstartY,touchsMovingY,
-touchsMovingX,touchendY,touchendX,newMovingX,newMovingY;
-var switcher = false;
-window.addEventListener('touchstart',(e)=>{
-  touchstartX = e.changedTouches[0].screenX;
-  touchstartY = e.changedTouches[0].screenY;
-  newMovingX = touchstartX
   
+
 })
-window.addEventListener('touchend',(e)=>{
+
+  outer.addEventListener(mousedownRwd,(e)=>{  
+  e.preventDefault(); 
+  e.type == 'touchstart' ? star = e.touches[0].clientX:star = e.clientX;
+    
+   
+
  
-  touchendX = e.changedTouches[0].screenX;
-  touchendY = e.changedTouches[0].screenY;
-  switcher = false
-  div.innerHTML = switcher
   
-})
-window.addEventListener('touchmove',(e)=>{
-  touchsMovingY = e.changedTouches[0].screenY;
-  touchsMovingX = e.changedTouches[0].screenX;
-  if(!switcher){
-  var timer12 = setTimeout(() => {
-    newMovingX = touchsMovingX
-    newMovingY = touchsMovingY
   
-  }, 50);
+  document.addEventListener(mouseupRwd,moveEnd)
+  document.addEventListener(mousemoveRwd,moveIng);
+  
+ });
+
+ 
+  function moveIng(e){  
+
+    e.type == 'touchmove' ? x = e.touches[0].clientX:x = e.clientX;
+    
+    let percent = Math.floor((star - x) / window.innerWidth *-100)
+    outpercent = percent;
+   
+    cotain.style.left = `${leftInit+percent}%`;
+  
   }
   
+  function moveEnd(e){
+    cotain.classList.add('active');
+    leftInit< 0 && outpercent > changePage ? cotain.style.left = `${leftInit+100}%`:
+    leftInit > (inner.length+1)*-100 && outpercent < -changePage? cotain.style.left = `${leftInit-100}%`:
+    cotain.style.left = `${leftInit}%`;
+
+    leftInit< 0 && outpercent > changePage ? leftInit += 100:
+    leftInit > (inner.length+1)*-100  && outpercent < -changePage? leftInit += -100:
+    '';
+    leftInit<= 0 && outpercent > changePage ? index += -1:
+    leftInit >= (inner.length+1)*-100 && outpercent < -changePage? index += 1:
+    '';
+
   
-  if(newMovingX - touchsMovingX >30&&
-    newMovingY - touchsMovingY > -20&&
-    newMovingY - touchsMovingY < 20){
-    switcher = true
-        console.log(switcher);
-        div.innerHTML = switcher
-        
-  }
+    
+    
+    if(index === inner.length){
+     
+      cotain.style.left = null;
+      index = 0;
+      leftInit = -100;            
+    }else if(index === -1){
+   
+     cotain.style.left = `${inner.length*-100}%`;
+     index = inner.length-1;
+     leftInit = inner.length*-100;            
+    }
+      document.removeEventListener('mouseup',moveEnd)
+    document.removeEventListener('mousemove',moveIng)
+    
+    
+    }
+
+ 
+
+
+
+
+  // function moveIng(e){  
+
+  //   e.type == 'touchmove' ? x = e.touches[0].clientX:x = e.clientX;
+    
+  //   let percent = Math.floor((star - x) / window.innerWidth *-100)
+  //   outpercent = percent;
+   
+  //   cotain.style.left = `${leftInit+percent}%`;
   
-  console.log(touchstartX,newMovingX,touchsMovingX);
-})
+  // }
 
 
+  //   function moveEnd(e){
+  //   cotain.classList.add('active');
 
-
+  
+  //   document.onmouseup = null;
+  //   document.onmousemove = null;
+  // }

@@ -1,0 +1,171 @@
+.innerHtml{
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    height: 2000px;
+    background: pink;   
+    flex-direction: column;   
+ 
+    align-items: center;
+    .contain01{
+        margin-top: 3vh;
+        width: 100%;
+        max-width: 1400px;
+       
+       
+        display: flex;
+       border: 1px solid saddlebrown;
+       >div{
+        
+        border:1px solid saddlebrown ;
+
+       }
+       >div:nth-child(1){
+           
+        flex:1.5;
+
+           .slider{
+            display: flex;
+            max-width: 800px;
+            width: 98%;
+            height: 400px;
+           
+            background: pink;
+            position: relative;
+            margin: 80px auto;
+            overflow: hidden;
+            
+            z-index: 0;
+            >.button{
+                display: flex;
+                width: 100%;
+                position: absolute;
+                top: 40%;
+                justify-content: space-between;
+               
+                z-index: 1;
+                button{
+                    display: flex;
+                    width: 50px;
+                    height: 50px;
+                   
+                    margin: 0 4%;
+                    
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    cursor: pointer;
+                    z-index: 1;
+                    .fa{
+                        font-size: 1.8rem;
+                    }
+                }
+                button:active{
+                    transform: scale(.8);
+                    transform: all 1s;
+                }
+            }
+            >.navBot{
+                display: flex;
+                width: 100%;
+               height: fit-content;
+             
+                position: absolute;
+                bottom: 5%;
+                justify-content: center;
+                align-items: center;
+                span{
+                    display: block;
+                    width: 9px;
+                    height: 9px;                    
+                    border-radius: 100%;
+                    margin: 0 1.5%;
+                    border: 2px solid #fff;
+                    opacity: 0.5;
+                    z-index: 1;
+                    cursor: pointer;
+                    transition:background 0.25s ,opacity 0.25s;
+                }
+                span.active{
+                    opacity: 1;
+                 
+                    background: white;
+                }
+            }
+            
+          
+            .cotain{
+                display: flex;
+                width:500%;
+                
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: -100%;
+                opacity: 0.5;
+                transform: translateX(0);
+                .inner{
+                    width: 20%;
+                }
+                
+                .inner:nth-child(1),
+                .inner:nth-child(4){
+                    background-color: saddlebrown;
+                   
+                }
+                    .inner:nth-child(2),
+                    .inner:nth-child(5){
+                    background-color: darkmagenta;
+                }
+                    .inner:nth-child(3){
+                    background-color: aqua;
+                  
+                }
+             }
+             .cotain.active{
+                transition:left 0.3s;
+            }
+           }
+              
+       }
+       >div:nth-child(2){
+        
+        flex:1;
+         }
+    }
+    
+}
+//手機板RWD
+@media only screen and (max-width: 768px){
+    //RWD開始
+
+    .innerHtml{
+        //第一頁
+        .contain01{
+            flex-direction: column;
+            >div:nth-child(1){
+                .slider{
+                height: 250px;
+                     >.button{
+                         button{
+                             width: 2.5rem;
+                             height: 5rem;
+                             margin: 0;
+
+                            }
+                        } 
+                 }
+            }
+            
+        }
+    } 
+
+
+
+
+
+
+    //RWD結束
+}
+
+
