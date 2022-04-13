@@ -1,6 +1,6 @@
 (async () => {
     //開始
-  let verson = '?ver=20220316_02'
+  let verson = '?ver=20220413_01'
 
   
   //pre開始
@@ -50,13 +50,13 @@ axios.get('header.html')
     document.body.append(jsScript2)
 })
 
-axios.get('footer.html')
-.then((res) => {
-    this.markDownData = res.data
-    document.querySelector('footer').innerHTML = res.data;    
-}).catch((error) => {
-    console.error(error) 
-})
+// axios.get('footer.html')
+// .then((res) => {
+//     this.markDownData = res.data
+//     document.querySelector('footer').innerHTML = res.data;    
+// }).catch((error) => {
+//     console.error(error) 
+// })
 
 
   

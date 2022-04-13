@@ -1,5 +1,34 @@
 //開始
-
+axios.get('image/mid-icon01.svg')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelectorAll('.coomonly-Button')[0].querySelector('div').insertAdjacentHTML("afterbegin", res.data)
+})
+axios.get('image/mid-icon02.svg')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelectorAll('.coomonly-Button')[1].querySelector('div').insertAdjacentHTML("afterbegin", res.data)
+})
+axios.get('image/mid-icon03.svg')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelectorAll('.coomonly-Button')[2].querySelector('div').insertAdjacentHTML("afterbegin", res.data)
+})
+axios.get('image/mid-icon04.svg')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelectorAll('.coomonly-Button')[3].querySelector('div').insertAdjacentHTML("afterbegin", res.data)
+})
+axios.get('image/mid-icon05.svg')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelectorAll('.coomonly-Button')[4].querySelector('div').insertAdjacentHTML("afterbegin", res.data)
+})
+axios.get('image/mid-icon06.svg')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelectorAll('.coomonly-Button')[5].querySelector('div').insertAdjacentHTML("afterbegin", res.data)
+})
 
 const clickRwd = function(targetEl,func){
   let X,Y,endX,endY,rwdSwicher;
@@ -397,5 +426,21 @@ const mousedownRwd = (function () {
 //slider結束  
 })()
 //slider結束
+let TIMEOUT = null;
+window.onresize = () => {
+  if(TIMEOUT === null) {
+    TIMEOUT = window.setTimeout(() => {
+      TIMEOUT = null;
+      //fb_iframe_widget class is added after first FB.FXBML.parse()
+      //fb_iframe_widget_fluid is added in same situation, but only for mobile devices (tablets, phones)
+      //By removing those classes FB.XFBML.parse() will reset the plugin widths.
+      document.querySelector('.fb-page').classList.remove('fb_iframe_widget');
+      document.querySelector('.fb-page').classList.remove('fb_iframe_widget_fluid')
+      FB.XFBML.parse();
+    }, 300);
+  }
+}
+
+
 
 //結束

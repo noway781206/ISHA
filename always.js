@@ -2,6 +2,24 @@
   //     fetch("image/social-color-1_logo-facebook.svg")
   // .then(response => response.text())
   // .then(svg => document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", svg));
+  axios.get('footer.html')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelector('footer').innerHTML = res.data;    
+}).catch((error) => {
+    console.error(error) 
+}).then(()=>{
+  axios.get('image/social-color-1_logo-facebook.svg')
+  .then((res) => {
+      this.markDownData = res.data
+      document.querySelector('.social a:nth-child(1) span').insertAdjacentHTML("afterbegin", res.data)
+  })
+  axios.get('image/social-color-1_logo-youtube.svg')
+  .then((res) => {
+      this.markDownData = res.data
+      document.querySelector('.social a:nth-child(2) span').insertAdjacentHTML("afterbegin", res.data)
+  })
+})
 
   axios.get('image/social-color-1_logo-facebook.svg')
 .then((res) => {
@@ -78,21 +96,53 @@ let lastScrollTop = 0;
   let switcher = false;  
   let pullSwitcher =false;
   let singleSwitcher = false;
-
+  let rwdNoticeSwitcher = true;
   let SwitchY = true;
   let switchX = false;
   let touchSwicher = [...dropMenu].some(e=>e.classList.contains('atcive'));
 
   function menuOffset(){
+  
     
     
+    if(rwdNoticeSwitcher){
+      
+      
+ 
+          // window.pageYOffset > lastScrollTop 
+    // && window.scrollY > 62
+    // ? menu.classList.add('down')
+    // : window.pageYOffset < lastScrollTop 
+    // ?doc('.rwd-notice').classList.remove('active')
+    // : '';
+
+    if(window.pageYOffset > lastScrollTop 
+      && window.scrollY > 62
+      &&lastScrollTop !== 0){
+       menu.classList.add('down');
+       !doc('.rwd-notice').classList.contains('active')&& menu.classList.contains('down')?doc('.rwd-notice').classList.add('active'):'';
+
+        
+
+
+    }else if(window.pageYOffset < lastScrollTop 
+            && lastScrollTop !== 0 ){
+      doc('.rwd-notice').classList.contains('active')?doc('.rwd-notice').classList.remove('active'):menu.classList.add('stiky');
+
+      
+    }
+    }
     
-    window.pageYOffset > lastScrollTop && window.scrollY > 62
-    ? menu.classList.add('down') 
-    : window.pageYOffset < lastScrollTop 
-    // ? menu.classList.remove('down')  
-    ?doc('.rwd-notice').classList.remove('active')
-    : '';
+    
+
+
+    
+  
+    
+ 
+  
+
+
   
     lastScrollTop = window.pageYOffset <= 0 ? 0 : window.pageYOffset;
    
@@ -102,7 +152,8 @@ let lastScrollTop = 0;
       
     if (window.scrollY > topBar.offsetHeight){
         menu.classList.add('stiky');
-        topBar.classList.add('stikyBar');        
+        topBar.classList.add('stikyBar');   
+            
           
         
     }else if(window.scrollY <= topBar.offsetHeight){
@@ -118,7 +169,7 @@ let lastScrollTop = 0;
     
     
   };
-  function throttle(func, timeout = 250) {
+  function throttle(func, timeout = 200) {
     let last;
     let timer;
    
@@ -139,9 +190,22 @@ let lastScrollTop = 0;
       }
     }
   };
+
   
- 
- 
+  function menuHoverEnterHLer(e) {
+    if(mql.matches)return
+    let now = e.currentTarget
+    now.previousElementSibling.querySelector('h1').classList.add('active');
+    
+    
+  }
+  function menuHoverLeaverHLer(e) {
+    if(mql.matches)return
+    let now = e.currentTarget
+    now.previousElementSibling.querySelector('h1').classList.remove('active');
+    
+  }
+
   
   
   function menuButtonHLer(e) {    
@@ -581,7 +645,7 @@ let lastScrollTop = 0;
   }
   
   
-  window.addEventListener('scroll',menuOffset)
+  window.addEventListener('scroll',throttle(menuOffset))
   menuButton.addEventListener('click',menuButtonHLer)
   rwdTopButton.forEach((button)=>{
     // menuTexts.removeEventListener('touchstart',menuTouchStar,false)
@@ -601,9 +665,15 @@ let lastScrollTop = 0;
   })
   menuText.forEach((menu)=>{
     menu.addEventListener('click',dropMenuHLer)
+    
   })
+
+
+
   dropMenu.forEach((item)=>{
     item.addEventListener('transitionend',dropMenuTransition)
+    item.addEventListener('mouseenter',menuHoverEnterHLer)
+    item.addEventListener('mouseleave',menuHoverLeaverHLer)
   })
   // menuTexts.addEventListener('touchstart',menuTouchStar,false)
   // window.addEventListener('touchend',menuTouchEnd,false)
@@ -686,6 +756,16 @@ let lastScrollTop = 0;
     if(e.currentTarget !== e.target)return
     let rwdNotice = e.currentTarget.classList;
     rwdNotice.contains('down')? doc('.rwd-notice').classList.add('active') :'';
+  
+    //rwdNotice.contains('down')? setTimeout(() => {rwdNoticeSwitcher = true}, 500) :'';
+    rwdNotice.contains('down')? console.log(e,1):'';
+    
+    
+    
+    
+    
+    
+    
    
     // !rwdNotice?doc('.rwd-notice').classList.remove('active') :'';
     
@@ -699,6 +779,10 @@ let lastScrollTop = 0;
  
    
   if(mql.matches){
+    let botFour = doc('.bot_popMenu');
+   
+
+    
     
    
     menuButton.addEventListener('click',backbutton);
@@ -747,6 +831,37 @@ let lastScrollTop = 0;
         this.markDownData = res.data
         document.querySelector('#bottom>div:nth-child(4) button span').insertAdjacentHTML("afterbegin", res.data)
     })
+    //六個icon
+    axios.get('image/mid-icon01.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        botFour.querySelector(`div:nth-child(1)>button:nth-child(1)>span`).insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/mid-icon02.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        botFour.querySelector(`div:nth-child(1)>button:nth-child(2)>span`).insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/mid-icon03.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        botFour.querySelector(`div:nth-child(1)>button:nth-child(3)>span`).insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/mid-icon04.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        botFour.querySelector(`div:nth-child(2)>button:nth-child(1)>span`).insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/mid-icon05.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        botFour.querySelector(`div:nth-child(2)>button:nth-child(2)>span`).insertAdjacentHTML("afterbegin", res.data)
+    })
+    axios.get('image/mid-icon06.svg')
+    .then((res) => {
+        this.markDownData = res.data
+        botFour.querySelector(`div:nth-child(2)>button:nth-child(3)>span`).insertAdjacentHTML("afterbegin", res.data)
+    })
 
     
     botDiv.forEach(item=>{
@@ -760,7 +875,15 @@ let lastScrollTop = 0;
     menu.addEventListener('transitionend',menuRwdNotice)
     doc('.rwd-notice').addEventListener('transitionend',(e)=>{
         if(e.currentTarget.classList.contains('active'))return
+        console.log('正常');
+        //setTimeout(() => {rwdNoticeSwitcher = true}, 300);       
         e.propertyName === 'transform' ? menu.classList.remove('down') : '';
+        //e.propertyName === 'transform' ? setTimeout(() => {rwdNoticeSwitcher = true}, 500) : '';
+        e.propertyName === 'transform' ? console.log(2) : '';
+        
+        
+        
+        
        
         
         
@@ -779,4 +902,4 @@ let lastScrollTop = 0;
   
   
   // 結束
-}
+  }

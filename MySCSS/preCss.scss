@@ -3,7 +3,7 @@ button { background-color:transparent; color:inherit; border-width:0; padding:0;
 figure{ margin:0; }
 ul, ol, dd { margin:0; padding:0; list-style:none; }
 h1, h2, h3, h4, h5, h6 { margin:0; font-size:inherit; font-weight:inherit;font-family: "Microsoft Jhenghei",微軟正黑體; }
-p { margin:0; }
+p { margin:0;  font-family: "Microsoft Jhenghei",微軟正黑體;}
 cite { font-style:normal; }
 fieldset { border-width:0; padding:0; margin:0; }
 *{
@@ -21,22 +21,38 @@ h1{
     font-size: 0.9rem;
     font-weight: bold;
     margin: 0 5px;
+    color: #222;
     
 }
 h2{
     font-size: 1rem;
-    
+    color: #222;
     line-height: 1.3rem;
     letter-spacing: 0.8px;
     
 }
 h3{
     font-size: 0.90rem;
+    color: #222;
 }
 h4{
     font-size:0.85rem ;
     color: rgb(70, 70, 70);
 }
+h5{
+    font-size:1.7rem ;
+    font-weight: 700;
+    color: rgb(29, 29, 29);
+    letter-spacing:0.3rem;
+}
+h6{
+    font-size:20px ;
+    
+    color: rgb(65, 65, 65);
+
+}
+
+
 
 
 header{
@@ -46,25 +62,57 @@ header{
     display: flex;
     width: 100%;
     height: 72px;
-    background-image:url('/image/head_logo.png');
-    background-repeat: no-repeat;
-    background-size: 77%;
-    background-position: 50% 0%;
+
     background-color: #f9f9f9;
     justify-content: center;
+    position:relative;
   
 
 }
 #topBar.stikyBar{
     margin-bottom: 6vh ;
 }
+#topBar>span{
+    position: absolute;
+    width: 100%;
+    max-width: 1470px;
+    margin:0 auto;
+    height: 100%;
+   
+   
+
+    display: flex;
+
+    background-image: url('/image/topest-back.png');
+    background-size: cover;
+
+
+}
 #topBar>div{
-    width: 73vw;
+    width: 95vw;
     max-width: 1400px;
     height: 100%;
     display: flex;
+    position: relative;
+  
     
     justify-content: flex-end;
+    .pc-logo{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: fit-content;
+        height: 100%;
+       
+        display: flex;
+        align-items: center;
+        img{
+            
+            width: 31vw;
+            max-width: 445px;
+
+        }
+    }
 
 }
 .topBarText{
@@ -139,6 +187,7 @@ header{
     top: 5rem;
     left: 0;
     transition: box-shadow 1s;
+    border-bottom: 1px solid #f2f2f2;
    
     /* background: rgba(128, 128, 0, 0.185);
     transition: background-color 0.25s; */
@@ -151,6 +200,7 @@ header{
     top: 0;
     position: fixed;
     box-shadow: 0 1px 4px 1px #1818182e;
+    border-bottom: none;
     
   
 }
@@ -175,6 +225,10 @@ header{
     transition: 0.15s all;
     cursor: pointer;
  }
+ .menu-text h1.active{
+    color: #6bbc6e;
+   
+ }
  /* .menu-text:hover + .drop-menu,
  .drop-menu:hover{
     visibility: visible;
@@ -182,8 +236,9 @@ header{
     
     
  } */
- .menu-text:hover{
+ .menu-text:hover h1{
      color: #6bbc6e;
+     transition:color 0.5s;
  }
  .menu-text:hover + .drop-menu>ul>li,
  .drop-menu:hover>ul>li{
@@ -203,6 +258,7 @@ header{
     z-index: 1;
     opacity:0;
     top:100%;
+    margin: -1px 0 0 0;
     
     background-color: white;
     box-shadow: rgb(127 137 161 / 25%) 0px 0px 6px;
@@ -291,23 +347,166 @@ header{
 
 /* footer */
 footer{
-    display: block;
-    height:3rem;
+    //display: flex;
+    display: flex;
+   
     width: 100%;
-    background: black;
+    background: #333;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    .outer{
+        width:100%;
+        max-width: 1300px;
+        height: fit-content;
+        //border: 1px solid white;
+        margin: 2rem 0 1rem;
+        display: flex;
+        >div{
+            display: flex;
+            height: 100%;
+            margin-left: 4rem;
+            
+            //border: 1px solid white;
+            h4{
+                color: #5dcd61;
+                font-size: 1rem;
+                font-weight: normal;
+                position:relative
+            }
+            h6{
+                color: white;
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+            }
+         
+        }
+        >div:nth-child(1){
+            margin-left: 0;
+        }
+        div.foot-top-text{
+            position: relative;
+            
+            width: 100%;
+        }
+        div.foot-top-text::after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.541);
+            bottom: -7px;
+            
+        }
+        .foot-bot-text{
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        >div:nth-child(1){
+            width: fit-content;
+            img{
+                height: 50%;
+                align-self: flex-start;
+                max-height: 171px;
+            }
+            >div{
+                width: 100%;
+                margin-left: 3rem;
+            }
+          
+            .train{
+                display: flex;
+                div:nth-child(1){
+                    margin-right: 2rem;
+                }
+            }
+        }
+        >div:nth-child(2),
+        >div:nth-child(3){
+            display: flex;
+            width: fit-content;
+            flex-direction: column;
+        }
+            .social span{
+        height: 2.2rem;
+        display: inline-flex;
+        margin-right:0.4rem ;
+        
+        
+        svg{
+            height: 100%;
+        }
+    }
+    .social a:nth-child(1) span:hover svg #White_4_{
+        fill:#326ef0;
+        transition: fill 0.3s;
+     
+    }
+    .social a:nth-child(2) span{
+        transform: scaleY(1.15);
+    }
+    .social a:nth-child(2) span:hover svg path:nth-child(1){       
+        fill: #ff0000;
+        transition: fill 0.3s;
+
+    }
+    }
+    .footer-botton{
+        max-width: 1300px;
+        margin: 0 0 15px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       
+        h4{
+            color: rgb(207, 207, 207);
+      
+            
+            font-size: 0.5rem;
+        }
+        
+    }
+    
+
 }
+//特殊設定
+@media only screen and(min-width:1470px){
 
+}
+@media only screen and (min-width: 769px) and (max-width: 1020px) {
+    #topBar > div .pc-logo img{
+        display: none;
+    }
+    #topBar > div .pc-logo {
+        left: 0% !important;
+        width: 110px;
+               position: relative;
+        background-image: url('/image/spec-logo.png');
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+    #topBar > div {
 
+        justify-content: center;
+    }
+
+}
 /* 只有平板以上有 */
 @media only screen and (min-width: 769px){
     .menu-text>span{
         display: none;
     }
+  
     .menu-text:hover + .drop-menu,
  .drop-menu:hover{
     visibility: visible;
     opacity: 1;    
  }
+
  .drop-menu button{
      display: none;
  }
@@ -321,9 +520,13 @@ footer{
 }
 /* 平板與大手機 RWD*/
 
-@media only screen and (min-width: 769px) and (max-width: 1100px) {
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
     html, body { 
         font-size: medium;
+    }
+    .menu-text h1{
+        width: 100%;
+    text-align: center;
     }
     /* 頂部bar */
     #topBar>div {
@@ -335,6 +538,20 @@ footer{
     #menu{
         min-height: 46px;
     }
+    #topBar > div .pc-logo{       
+        left: 1%;
+    }
+    .topBarText > li {
+        margin: 0 1vw 0 0;
+    }
+    //footer
+    footer .outer {
+        width: 96%;
+    }
+
+
+ 
+
 
     /* RWD結束 */
 } 
@@ -499,11 +716,7 @@ footer{
         height: 100vh;
         
     }
-    .menu-text h1::after{
-        content: '<icon>';
-        margin-left: 10px;
-       
-    }
+   
     .menu-texts .menu-text:nth-child(2){
      
         border-top:  1px solid #e7e7e7;
@@ -527,9 +740,15 @@ footer{
     }
     .rwd-logo{
         display: flex;
-        width: 50px;
+        
         height: 50px;
-        background-color: saddlebrown;
+        img{
+            width: 90%;
+            max-height: 80%;
+           
+            align-self: center;
+        }
+        
   
     }
     .menu-button{
@@ -768,35 +987,35 @@ footer{
         transition: all 0.75s;
 
       }
-      #bottom>div:nth-child(2) button span svg{
+      #bottom>div:nth-child(2)>button>span>svg{
         transform: scale(1.25) translateY(3%);
 
       }
     
-      #bottom>div:nth-child(3) button span svg{
+      #bottom>div:nth-child(3)>button>span>svg{
         transform: scale(1.1) translateY(3%);
 
       }
-      #bottom>div:nth-child(1) button span svg path,
-      #bottom>div:nth-child(1) button span svg rect,
-      #bottom>div:nth-child(2) button span svg path{
+      #bottom>div:nth-child(1)>button>span>svg path,
+      #bottom>div:nth-child(1)>button>span>svg rect,
+      #bottom>div:nth-child(2)>button>span>svg path{
           
           fill:$maingray;
 
 
       }
-      #bottom>div:nth-child(3) button span svg path,
-      #bottom>div:nth-child(3) button span svg rect{
+      #bottom>div:nth-child(3)>button>span>svg path,
+      #bottom>div:nth-child(3)>button>span>svg rect{
         stroke:$maingray;
         
         stroke-width:25;
 
      }
-     #bottom>div:nth-child(3) button span svg path:nth-child(6),
-     #bottom>div:nth-child(3) button span svg path:nth-child(7){
+     #bottom>div:nth-child(3)>button>span>svg path:nth-child(6),
+     #bottom>div:nth-child(3)>button>span>svg path:nth-child(7){
          fill:$maingray;
      }
-     #bottom>div:nth-child(4) button span svg path{
+     #bottom>div:nth-child(4)>button>span>svg path{
         stroke:$maingray;
         stroke-width:20;
      }
@@ -834,7 +1053,7 @@ footer{
          justify-content: center;
          width: 100%;
          max-height: 30%;
-         bottom: 7rem;
+         bottom: 6rem;
          left: 0;
          
          flex-direction: column;
@@ -852,7 +1071,7 @@ footer{
      
      }
      .bot_popMenu{
-         width: 80%;
+         width: 90%;
          
          box-shadow: 0px 0px 4px rgba(43, 43, 43, 0.486) ;
          border-radius: 10px;
@@ -884,13 +1103,20 @@ footer{
          justify-content: center;
          align-items: center;
          flex-direction: column;
+         h3{
+            color: #0fa714;
+         }
      }
      
      .bot_popMenu>div>button>span{
          display: flex;
-         width: 5rem;
+         width: 3rem;
          height: 3rem;
-         background: saddlebrown;
+         margin-bottom: 7px;
+         //background: saddlebrown;
+         svg{
+             height: 100%;
+         }
          
      }
     //  RWD提醒Nav
@@ -930,6 +1156,66 @@ footer{
     
   
         
+
+    }
+    //footer
+    footer{
+                
+        .outer{
+            flex-direction: column;
+            align-items: center;
+            
+            >div{
+                width: 96% !important;
+                div{
+                    width: fit-content !important;
+                }
+                
+            }
+        }
+        .outer > div:nth-child(1){
+            flex-direction: column;
+            img{
+                margin: 0 auto 3rem;
+            }
+            .train{
+                flex-direction: column;
+            }
+        }
+    }
+    footer .outer > div:nth-child(2)>div, footer .outer > div:nth-child(3)>div{
+        margin-left: 0rem;
+    }
+    footer .outer > div {
+        display: flex;
+        height: 100%;
+        margin-left: 0;
+    }
+    footer .outer > div:nth-child(1) > div {
+        
+        margin-left: 0rem;
+    }
+    footer .outer > div {
+        h4{
+            font-size: 1.3rem;
+        }
+        h6{
+            font-size: 1.2rem;
+        }
+
+    }
+    footer .outer .social span {
+        height: 3.5rem;
+        margin-right: 1rem;
+    }
+    footer .footer-botton{        
+    width: 96%;
+    margin: 0 0 7rem 0;
+    align-items: flex-start;
+    h4{
+        margin:5px 0;
+        font-size: 1rem;
+    }
 
     }
 
