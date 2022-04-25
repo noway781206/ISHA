@@ -1,49 +1,4 @@
 {
-  //     fetch("image/social-color-1_logo-facebook.svg")
-  // .then(response => response.text())
-  // .then(svg => document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", svg));
-  axios.get('footer.html')
-.then((res) => {
-    this.markDownData = res.data
-    document.querySelector('footer').innerHTML = res.data;    
-}).catch((error) => {
-    console.error(error) 
-}).then(()=>{
-  axios.get('image/social-color-1_logo-facebook.svg')
-  .then((res) => {
-      this.markDownData = res.data
-      document.querySelector('.social a:nth-child(1) span').insertAdjacentHTML("afterbegin", res.data)
-  })
-  axios.get('image/social-color-1_logo-youtube.svg')
-  .then((res) => {
-      this.markDownData = res.data
-      document.querySelector('.social a:nth-child(2) span').insertAdjacentHTML("afterbegin", res.data)
-  })
-})
-
-  axios.get('image/social-color-1_logo-facebook.svg')
-.then((res) => {
-    this.markDownData = res.data
-    document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", res.data)
-})
-  // fetch("image/social-color-1_logo-youtube.svg")
-  // .then(response => response.text())
-  // .then(svg => document.querySelector('#youtube_Icon').insertAdjacentHTML("afterbegin", svg)); 
-  axios.get('image/social-color-1_logo-youtube.svg')
-  .then((res) => {
-      this.markDownData = res.data
-      document.querySelector('#youtube_Icon').insertAdjacentHTML("afterbegin", res.data)
-  })
-  let myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)counter\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
-  function cookie(){
-   
-    allCookies = document.cookie;
-    myCookie !== '' &&  myCookie > 0 ? menuCounter = myCookie : document.cookie = "counter=0"
-    myCookie !== '' &&  myCookie > 0 ? navCounter = myCookie :navCounter = 0;
-    console.log(myCookie);
-    
-  }
   const clickRwd = function(targetEl,func){
     let X,Y,endX,endY,rwdSwicher;
     function touchClickStar(e) {
@@ -100,8 +55,9 @@ let lastScrollTop = 0;
   let SwitchY = true;
   let switchX = false;
   let touchSwicher = [...dropMenu].some(e=>e.classList.contains('atcive'));
-
-  function menuOffset(){
+  
+//預先載入選單功能
+  let menuOffset = () =>{
   
     
     
@@ -117,7 +73,7 @@ let lastScrollTop = 0;
     // : '';
 
     if(window.pageYOffset > lastScrollTop 
-      && window.scrollY > 62
+      && window.scrollY > 150
       &&lastScrollTop !== 0){
        menu.classList.add('down');
        !doc('.rwd-notice').classList.contains('active')&& menu.classList.contains('down')?doc('.rwd-notice').classList.add('active'):'';
@@ -126,6 +82,7 @@ let lastScrollTop = 0;
 
 
     }else if(window.pageYOffset < lastScrollTop 
+          
             && lastScrollTop !== 0 ){
       doc('.rwd-notice').classList.contains('active')?doc('.rwd-notice').classList.remove('active'):menu.classList.add('stiky');
 
@@ -153,6 +110,7 @@ let lastScrollTop = 0;
     if (window.scrollY > topBar.offsetHeight){
         menu.classList.add('stiky');
         topBar.classList.add('stikyBar');   
+       
             
           
         
@@ -169,7 +127,51 @@ let lastScrollTop = 0;
     
     
   };
-  function throttle(func, timeout = 200) {
+window.addEventListener('scroll',throttle(menuOffset))
+
+  axios.get('footer.html')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelector('footer').innerHTML = res.data;    
+}).catch((error) => {
+    console.error(error) 
+}).then(()=>{
+  axios.get('image/social-color-1_logo-facebook.svg')
+  .then((res) => {
+      this.markDownData = res.data
+      document.querySelector('.social a:nth-child(1) span').insertAdjacentHTML("afterbegin", res.data)
+  })
+  axios.get('image/social-color-1_logo-youtube.svg')
+  .then((res) => {
+      this.markDownData = res.data
+      document.querySelector('.social a:nth-child(2) span').insertAdjacentHTML("afterbegin", res.data)
+  })
+})
+
+  axios.get('image/social-color-1_logo-facebook.svg')
+.then((res) => {
+    this.markDownData = res.data
+    document.querySelector('#facebook_Icon').insertAdjacentHTML("afterbegin", res.data)
+})
+
+  axios.get('image/social-color-1_logo-youtube.svg')
+  .then((res) => {
+      this.markDownData = res.data
+      document.querySelector('#youtube_Icon').insertAdjacentHTML("afterbegin", res.data)
+  })
+  let myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)counter\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+  function cookie(){
+   
+    allCookies = document.cookie;
+    myCookie !== '' &&  myCookie > 0 ? menuCounter = myCookie : document.cookie = "counter=0"
+    myCookie !== '' &&  myCookie > 0 ? navCounter = myCookie :navCounter = 0;
+    console.log(myCookie);
+    
+  }
+ 
+
+  function throttle(func, timeout = 100) {
     let last;
     let timer;
    
@@ -192,14 +194,14 @@ let lastScrollTop = 0;
   };
 
   
-  function menuHoverEnterHLer(e) {
+  let menuHoverEnterHLer = (e) => {
     if(mql.matches)return
     let now = e.currentTarget
     now.previousElementSibling.querySelector('h1').classList.add('active');
     
     
   }
-  function menuHoverLeaverHLer(e) {
+  let menuHoverLeaverHLer = (e)=> {
     if(mql.matches)return
     let now = e.currentTarget
     now.previousElementSibling.querySelector('h1').classList.remove('active');
@@ -208,7 +210,7 @@ let lastScrollTop = 0;
 
   
   
-  function menuButtonHLer(e) {    
+  let menuButtonHLer = (e)=> {    
     
     let {currentTarget} = e
     span[0].style.transform = "translate(0)";
@@ -229,7 +231,7 @@ let lastScrollTop = 0;
     
     
   }
-  function topButtonHLer(e) {
+  let topButtonHLer = (e) => {
     span[0].style.transform = "translate(-27%,13%)";
     span[2].style.transform = "translate(-27%,-13%)";
     span[1].style.transform = "scaleX(1)";
@@ -280,7 +282,7 @@ let lastScrollTop = 0;
     
    
   }
-  function rwdInnerList(e) {
+  let rwdInnerList = (e) => {
     let {currentTarget} = e
     
     let text = currentTarget.querySelector('.innerText');
@@ -303,7 +305,7 @@ let lastScrollTop = 0;
     rwdDropIcon?rwdDropIcon.classList.toggle('active'):0;
   }
 
-  function dropMenuHLer(e) {
+  let dropMenuHLer = (e) => {
     let a = e.currentTarget.nextElementSibling
     a.classList.toggle('atcive');
     let b = menuTexts.querySelector('.logo')
@@ -312,7 +314,7 @@ let lastScrollTop = 0;
     
     
   }
-  function rwdLastHLer(e){   
+  let rwdLastHLer = (e) =>{   
     
     let a = e.currentTarget.parentElement
    
@@ -324,7 +326,7 @@ let lastScrollTop = 0;
     })
     
   }
-  function dropMenuTransition(e) {
+  let dropMenuTransition = (e) => {
     if(e.currentTarget.classList.contains('atcive') !== true &&
     e.propertyName.includes('transform')&&
     e.currentTarget === e.target){
@@ -346,7 +348,7 @@ let lastScrollTop = 0;
 
 
 
-  function handleGesture(e) {
+  let handleGesture = (e) => {
    
    
     console.log('handleGesture');
@@ -479,7 +481,7 @@ let lastScrollTop = 0;
   }
   
    
-  function menuTouchMove(e) {
+  let menuTouchMove = (e) => {
     
 
   
@@ -587,7 +589,7 @@ let lastScrollTop = 0;
 
     }
 
-  function menuTouchStar(e){
+  let menuTouchStar = (e) =>{
     switchX = true
     // e.stopPropagation
     // menuTexts.removeEventListener('touchstart',menuTouchStar,true)
@@ -610,7 +612,7 @@ let lastScrollTop = 0;
   
   }
   
-  function menuTouchEnd(e) {
+  let menuTouchEnd = (e) => {
   
     touchendX = e.changedTouches[0].screenX;
   touchendY = e.changedTouches[0].screenY;
@@ -645,7 +647,7 @@ let lastScrollTop = 0;
   }
   
   
-  window.addEventListener('scroll',throttle(menuOffset))
+  
   menuButton.addEventListener('click',menuButtonHLer)
   rwdTopButton.forEach((button)=>{
     // menuTexts.removeEventListener('touchstart',menuTouchStar,false)
@@ -684,15 +686,16 @@ let lastScrollTop = 0;
   let botOutNav = document.querySelectorAll('#bottom .outerNav');
   let mql = window.matchMedia('(max-width: 768px)');
   let fourButton = document.querySelectorAll('#bottom>div>button')
+  let fourButtonCloseButton = document.querySelector('.close');
 
-  function backbutton(){
+  let backbutton = () =>{
     menu.hash = '#menu'
     document.location.href = '#menu'
     
     
     
   }
-  function backbuttonNav(e){
+  let backbuttonNav = (e) =>{
     // if(menuTexts.classList.contains('menuPop')!== true&&location.hash ==="#menu"){
     //   window.history.go(-1);
       
@@ -701,7 +704,7 @@ let lastScrollTop = 0;
     //       }
     window.history.go(-1);
   }
-  function botclickHLer(e) {
+  let botclickHLer = (e) => {
     let span = e.currentTarget.querySelector('button span')
     let h2 = e.currentTarget.querySelector('button h2')
     let allspan = document.querySelectorAll('#bottom>div button span')
@@ -735,7 +738,7 @@ let lastScrollTop = 0;
 
     
   }
-  function OutNavClickHLer(e) {
+  let OutNavClickHLer = (e) => {
     let outer = e.currentTarget.nextElementSibling;
     
     
@@ -752,13 +755,13 @@ let lastScrollTop = 0;
     
     
   }
-  function menuRwdNotice(e) {
+  let menuRwdNotice = (e) => {
     if(e.currentTarget !== e.target)return
     let rwdNotice = e.currentTarget.classList;
     rwdNotice.contains('down')? doc('.rwd-notice').classList.add('active') :'';
   
     //rwdNotice.contains('down')? setTimeout(() => {rwdNoticeSwitcher = true}, 500) :'';
-    rwdNotice.contains('down')? console.log(e,1):'';
+    
     
     
     
@@ -770,6 +773,11 @@ let lastScrollTop = 0;
     // !rwdNotice?doc('.rwd-notice').classList.remove('active') :'';
     
     
+    
+  }
+  let fourButtonClose = (e) => {
+    let parent = e.currentTarget.parentElement.parentElement
+    parent.classList.remove('active')
     
   }
 
@@ -872,14 +880,17 @@ let lastScrollTop = 0;
       clickRwd(item,OutNavClickHLer)
       // item.addEventListener('click',OutNavClickHLer)
     })
+   
+  
+    clickRwd(fourButtonCloseButton,fourButtonClose)
     menu.addEventListener('transitionend',menuRwdNotice)
     doc('.rwd-notice').addEventListener('transitionend',(e)=>{
         if(e.currentTarget.classList.contains('active'))return
-        console.log('正常');
+     
         //setTimeout(() => {rwdNoticeSwitcher = true}, 300);       
         e.propertyName === 'transform' ? menu.classList.remove('down') : '';
         //e.propertyName === 'transform' ? setTimeout(() => {rwdNoticeSwitcher = true}, 500) : '';
-        e.propertyName === 'transform' ? console.log(2) : '';
+      
         
         
         

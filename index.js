@@ -1,4 +1,5 @@
-//開始
+{
+  //開始
 axios.get('image/mid-icon01.svg')
 .then((res) => {
     this.markDownData = res.data
@@ -95,10 +96,13 @@ const mousedownRwd = (function () {
     let transEndSwicher = true;
     let SwicherY = true;
     let pullStop = true;
+    let innerLink = document.querySelectorAll('.cotain .inner a');
     let pre = ()=>{
         return new Promise( resolve =>{  
             let cloneFirst = inner[0].cloneNode(true);
             let cloneLast =  inner[inner.length-1].cloneNode(true);
+            //cotain.style.width = `600%`;
+            
             
             cotain.insertAdjacentElement('beforeend', cloneFirst);
             cotain.insertAdjacentElement('afterbegin', cloneLast);  
@@ -421,7 +425,53 @@ const mousedownRwd = (function () {
 
 
 
+//超連結
+
+innerLink.forEach(item=>{
+  clickRwd(item,function (e) {
+    e.preventDefault()
+  });
+  
+let linkStartX,linkEndTimeX,linkStartY,linkEndTimeY;
+  item.addEventListener(mousedownRwd,function (e) {
+ 
+    e.type == 'touchstart' ? linkStartX = e.changedTouches[0].clientX:linkStartX = e.clientX;
+    e.type == 'touchstart' ? linkStartY = e.changedTouches[0].clientY:linkStartY = e.clientY;
+    //startTime = new Date();
     
+    //linkStartY = e.screenY;
+    
+    
+  })
+  item.addEventListener(mouseupRwd,function (e) {
+ 
+    //console.log(e);
+    //endTime = new Date();
+    // linkEndTimeX = e.screenX;
+    // linkEndTimeY = e.screenY;
+    e.type == 'touchend' ? linkEndTimeX = e.changedTouches[0].clientX:linkEndTimeX = e.clientX;
+    e.type == 'touchend' ? linkEndTimeY = e.changedTouches[0].clientY:linkEndTimeY = e.clientY;
+    
+    let linkX = linkStartX - linkEndTimeX;
+    let linkY = linkStartY - linkEndTimeY;
+    //console.log(linkX,linkY);
+    if(linkX > -3 &&  linkX < 3 && linkY > -3 && linkY < 3){
+     
+      location.href = e.currentTarget.href
+      
+    }
+    
+    
+    
+  })
+})
+
+//超連結結束
+
+
+
+
+
 
 //slider結束  
 })()
@@ -444,3 +494,4 @@ window.onresize = () => {
 
 
 //結束
+}

@@ -196,6 +196,7 @@ $mainGreen:#14b119;
             >.button{
                 display: flex;
                 width: 100%;
+                height: 0;
                 position: absolute;
                 top: 40%;
                 justify-content: space-between;
@@ -263,6 +264,11 @@ $mainGreen:#14b119;
                 transform: translateX(0);
                 .inner{
                     width: 20%;
+                    a{
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
                 
                 .inner:nth-child(1),
@@ -276,6 +282,7 @@ $mainGreen:#14b119;
                 }
                     .inner:nth-child(3){
                     background-color: aqua;
+        
                   
                 }
              }
@@ -1059,6 +1066,7 @@ $hoverGreen:#5ecb62;
                     width: 100%;
                     height: 250px;
                      >.button{
+                     
                          button{
                              width: 2.5rem;
                              height: 5rem;

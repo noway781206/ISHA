@@ -1,0 +1,305 @@
+@charset "UTF-8";
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  color: inherit;
+  border-width: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+figure {
+  margin: 0;
+}
+
+ul, ol, dd {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: "Microsoft Jhenghei", 微軟正黑體;
+}
+
+p {
+  margin: 0;
+  font-family: "Microsoft Jhenghei", 微軟正黑體;
+}
+
+cite {
+  font-style: normal;
+}
+
+fieldset {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-size: large;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100%;
+}
+
+h1 {
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
+  margin: 0 5px;
+  color: #222;
+}
+
+h2 {
+  font-size: 1rem;
+  color: #222;
+  line-height: 1.3rem;
+  letter-spacing: 0.8px;
+}
+
+h3 {
+  font-size: 0.9rem;
+  color: #222;
+}
+
+h4 {
+  font-size: 0.85rem;
+  color: #464646;
+}
+
+h5 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1d1d1d;
+  letter-spacing: 0.3rem;
+}
+
+h6 {
+  font-size: 20px;
+  color: #414141;
+}
+
+@-webkit-keyframes animate01 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-3000px, 0, 0);
+  }
+}
+@-webkit-keyframes animate02 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+}
+header .svgAnimte {
+  position: relative;
+  display: flex;
+  width: 5000px;
+  height: 270px;
+  bottom: 0;
+  background-image: url("/image/tech_serch/headerSVG01.svg");
+  background-repeat: repeat-x;
+  background-size: contain;
+  animation: animate01 200s linear infinite;
+  background-color: #d0eae9;
+}
+header .bot {
+  display: flex;
+  height: 100px;
+  width: 100vw;
+}
+header .bot img {
+  object-position: top;
+  object-fit: contain;
+  width: 100%;
+}
+header .book {
+  display: flex;
+  width: 400px;
+  height: 270px;
+  background-image: url("/image/tech_serch/headerSVG02.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: animate02 7s linear infinite;
+  right: 10%;
+  top: 85px;
+  position: absolute;
+}
+header .mainNav {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  left: 0;
+  bottom: 8%;
+  justify-content: center;
+  align-items: center;
+}
+header .mainNav .menu {
+  display: flex;
+  max-width: 1300px;
+  width: 100%;
+  border-radius: 25px;
+  background: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 1px 8px rgba(0, 0, 0, 0.08);
+}
+header .mainNav .menu .menu-button {
+  display: flex;
+  height: 4rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: background-color 0.35s, transform 0.5s;
+  border-radius: 10px;
+  margin: 0 0.3%;
+}
+header .mainNav .menu .menu-button h1 {
+  transition: color 0.35s;
+}
+header .mainNav .menu .menu-button a {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+header .mainNav .menu .menu-button:first-child {
+  margin-left: 25px;
+}
+header .mainNav .menu .menu-button:last-child {
+  margin-right: 25px;
+}
+header .mainNav .menu .menu-button:nth-child(2) {
+  background-color: #5CB774;
+  transform: translateY(-5px);
+}
+header .mainNav .menu .menu-button:nth-child(2) h1 {
+  color: white;
+}
+
+.innerHtml {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  flex-direction: column;
+}
+.innerHtml nav.firstTime {
+  max-width: 1300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1% 0;
+}
+.innerHtml nav.firstTime ul {
+  width: 40%;
+  height: 2.5rem;
+  display: flex;
+  position: relative;
+}
+.innerHtml nav.firstTime ul span {
+  display: block;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #5CB774;
+  z-index: 0;
+  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.12), inset 0 1px 8px rgba(0, 0, 0, 0.28);
+}
+.innerHtml nav.firstTime ul li {
+  display: flex;
+  position: relative;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition-delay: 0.1s;
+  transition: box-shadow 0.1s ease-in-out;
+}
+.innerHtml nav.firstTime ul li h2 {
+  z-index: 1;
+}
+.innerHtml nav.firstTime ul li:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.1s ease-in-out;
+}
+.innerHtml nav.firstTime ul li:first-child {
+  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.12), inset 0 1px 8px rgba(0, 0, 0, 0.28);
+}
+.innerHtml nav.firstTime ul li:first-child h2 {
+  color: white;
+  transform: scale(0.98);
+}
+.innerHtml .test {
+  display: flex;
+  width: 1300px;
+  height: 800px;
+  border: 1px solid saddlebrown;
+}
+
+/* 只有平板以上有 */
+@media only screen and (min-width: 769px) {
+  header .mainNav .menu .menu-button:hover {
+    background-color: #5CB774;
+    transform: translateY(-5px);
+  }
+
+  header .mainNav .menu .menu-button:hover h1 {
+    color: white;
+  }
+
+  .innerHtml nav.firstTime ul li:hover {
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.12), inset 0 1px 8px rgba(0, 0, 0, 0.28);
+  }
+  .innerHtml nav.firstTime ul li:hover h2 {
+    transform: scale(0.98);
+  }
+
+  .innerHtml nav.firstTime ul li:hover::after {
+    box-shadow: initial;
+  }
+}
+/* 平板與大手機 RWD*/
+
+/*# sourceMappingURL=tech_serch.css.map */

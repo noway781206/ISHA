@@ -47,7 +47,12 @@ axios.get('header.html')
     jsScript.src ='always.js'+verson
     jsScript2.src ='index.js'+verson
     document.body.append(jsScript)
-    document.body.append(jsScript2)
+    
+    window.location.pathname==="/" || window.location.pathname==="/index.html" ?document.body.append(jsScript2) :'';
+  
+ 
+      
+    
 })
 
 // axios.get('footer.html')
