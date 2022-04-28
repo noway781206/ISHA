@@ -72,20 +72,22 @@ h2 {
 }
 
 h3 {
-  font-size: 0.9rem;
-  color: #222;
+  font-size: 1rem;
+  color: #565656;
+  font-weight: bold;
 }
 
 h4 {
-  font-size: 0.85rem;
-  color: #464646;
+  font-size: 1.87rem;
+  color: #565656;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
 }
 
 h5 {
-  font-size: 1.7rem;
-  font-weight: 700;
-  color: #1d1d1d;
-  letter-spacing: 0.3rem;
+  font-size: 0.75rem;
+  color: #707070;
+  font-weight: 500;
 }
 
 h6 {
@@ -237,8 +239,17 @@ header .mainNav .menu .menu-button:nth-child(2) h1 {
   top: 0;
   left: 0;
   background-color: #5CB774;
+  border-radius: 50px 0 0 50px;
   z-index: 0;
   box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.12), inset 0 1px 8px rgba(0, 0, 0, 0.28);
+  transition: border-radius 0.5s, transform 0.35s, box-shadow 0.3s;
+}
+.innerHtml nav.firstTime ul span.active {
+  transform: translateX(100%);
+  border-radius: 0 50px 50px 0;
+}
+.innerHtml nav.firstTime ul span.up {
+  box-shadow: initial;
 }
 .innerHtml nav.firstTime ul li {
   display: flex;
@@ -265,17 +276,335 @@ header .mainNav .menu .menu-button:nth-child(2) h1 {
   transition: box-shadow 0.1s ease-in-out;
 }
 .innerHtml nav.firstTime ul li:first-child {
-  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.12), inset 0 1px 8px rgba(0, 0, 0, 0.28);
+  border-radius: 50px 0 0 50px;
 }
 .innerHtml nav.firstTime ul li:first-child h2 {
   color: white;
   transform: scale(0.98);
 }
-.innerHtml .test {
+.innerHtml nav.firstTime ul li:first-child:after {
+  border-radius: 50px 0 0 50px;
+}
+.innerHtml nav.firstTime ul li:nth-child(2) {
+  border-radius: 0 50px 50px 0;
+}
+.innerHtml nav.firstTime ul li:nth-child(2):after {
+  border-radius: 0 50px 50px 0;
+}
+.innerHtml nav.serch {
+  display: flex;
+  max-width: 1300px;
+  width: 100%;
+  margin: 2% 0 0 0;
+}
+.innerHtml nav.serch form {
+  width: 100%;
+}
+.innerHtml nav.serch form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: 1px solid #dfdfdf;
+  width: 100%;
+  color: #bbbbbb;
+  font-size: 0.9rem;
+  height: fit-content;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: scaleY(0);
+  transform-origin: top center;
+  overflow: hidden;
+  box-shadow: #2222220d 1px 1px 2px;
+  cursor: pointer;
+  z-index: 1;
+}
+.innerHtml nav.serch form select option {
+  border: none;
+  outline: none;
+  color: #222;
+  font-size: 0.95rem;
+  background: white;
+  margin: 0;
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+.innerHtml nav.serch form select option:hover {
+  background: #9DDCA7;
+  transition: background 0.3s;
+}
+.innerHtml nav.serch form select:focus {
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+  outline: none;
+}
+.innerHtml nav.serch form select:focus option:checked,
+.innerHtml nav.serch form select:focus option:active,
+.innerHtml nav.serch form select:focus option:focus {
+  background: linear-gradient(#9DDCA7, #9DDCA7);
+  position: relative;
+}
+.innerHtml nav.serch form select:focus option:checked:before {
+  color: #222;
+  position: absolute;
+  content: attr(data-content);
+}
+.innerHtml nav.serch form > ul {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.innerHtml nav.serch form > ul > li {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-width: 250px;
+  align-items: center;
+}
+.innerHtml nav.serch form > ul > li > div.top {
+  display: flex;
+  position: relative;
+  width: 80%;
+}
+.innerHtml nav.serch form > ul > li > div.top > span {
+  display: flex;
+  margin-right: 0.3rem;
+}
+.innerHtml nav.serch form > ul > li > div.top > span img {
+  align-self: center;
+  height: 75%;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) {
+  width: 80%;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) input[type=text] {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 0.5rem 0rem 0.5rem 0.8rem;
+  margin-top: 0.3rem;
+  font-size: 0.92rem;
+  transform: translateX(-0.2em);
+  width: 12rem;
+  transition: width 0.35s;
+  background: #eee;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) input[type=text]::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  font-family: "Microsoft Jhenghei", 微軟正黑體, FontAwesome;
+  transition: all 0.35s;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) input[type=text]:focus {
+  border: 1px solid #5cb875;
+  outline: none;
+  color: #222;
+  font-family: "Microsoft Jhenghei", 微軟正黑體, FontAwesome;
+  font-size: 0.9rem;
+  width: 14rem;
+  background: none;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) input[type=text]:focus::placeholder {
+  color: #5cb875;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) .select {
+  position: relative;
+  width: 100%;
+  max-width: 200px;
+  margin-top: 2%;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+  color: #bbbbbb;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) .select h3 {
+  color: #707070;
+  font-size: 0.9rem;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) .select h3.checked {
+  color: #707070;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) .select::after {
+  content: "▾";
+  position: absolute;
+  top: -2px;
+  right: 5px;
+  color: #707070;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.7rem;
+  z-index: -1;
+}
+.innerHtml nav.serch form > ul > li > div:nth-child(2) .select.active > select {
+  transform: scaleY(1);
+  transition: transform 0.2s;
+}
+.innerHtml nav.serch form > ul li:nth-child(1) > .top > span {
+  margin-right: 0.1rem;
+}
+.innerHtml nav.serch form > ul > li:nth-child(1) {
+  max-width: 200px;
+}
+.innerHtml nav.tech_title {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 5rem 0 0 0;
+  flex-direction: column;
+}
+.innerHtml nav.tech_title > h4 {
+  margin-left: 3%;
+  position: relative;
+  z-index: 1;
+}
+.innerHtml nav.tech_title > h4::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 15px;
+  left: 70%;
+  width: 50%;
+  height: 40px;
+  background-color: #76db91c5;
+  z-index: -1;
+  border-radius: 3px;
+}
+.innerHtml nav.tech_title > h5 {
+  margin-left: 3.2%;
+  margin-top: 0.5%;
+  color: #5cb875;
+  font-weight: bold;
+}
+.innerHtml nav.tech_title ul {
+  display: flex;
+  margin: 2rem 0 1rem;
+}
+.innerHtml nav.tech_title ul li > div {
+  padding: 0.3rem 0.6rem;
+  margin: 0 0.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #ced4da7d;
+  transition: background 0.4s;
+  box-shadow: rgba(24, 36, 26, 0.03) 0px 1px 0px, rgba(31, 50, 33, 0.15) 0px 0px 4px;
+}
+.innerHtml nav.tech_title ul li > div.active {
+  background: #5cb774;
+}
+.innerHtml nav.tech_title ul li > div.active h5 {
+  color: white;
+}
+.innerHtml nav.tech_title ul li form {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 0 0 1rem;
+}
+.innerHtml nav.tech_title ul li form p {
+  font-size: 0.9rem;
+  color: #565656;
+}
+.innerHtml nav.tech_title ul li form input {
+  margin: 0 0.3rem;
+  font-size: 0.8rem;
+  color: #565656;
+  cursor: pointer;
+}
+.innerHtml nav.tech_title ul li form input[type=date] {
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  height: 96%;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+.innerHtml nav.tech_title ul li form input[type=date]:focus {
+  outline: none;
+  color: #5cb875;
+  border: 1px solid #5cb875;
+}
+.innerHtml nav.tech_title ul li form input[type=date]::before {
+  position: absolute;
+  content: "";
+  background-image: url("/image/tech_serch/icon-13.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  width: 1.7rem;
+  height: 100%;
+}
+.innerHtml nav.tech_title ul li form ::-webkit-datetime-edit {
+  padding: 0 0.15rem 0 2rem;
+}
+.innerHtml nav.tech_title ul li form ::-webkit-datetime-edit-year-field {
+  margin: 0;
+  padding: 0;
+}
+.innerHtml nav.tech_title ul li form ::-webkit-datetime-edit-year-field:focus {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: #5cb875;
+}
+.innerHtml nav.tech_title ul li form ::-webkit-inner-spin-button {
+  display: none;
+}
+.innerHtml nav.tech_title ul li form ::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+  padding: 2rem;
+  background-image: none;
+}
+.innerHtml nav.tech_title ul li form input[type=submit] {
+  background: #5cb774;
+  outline: none;
+  border: none;
+  color: white;
+  padding: 0.27rem 0.8rem;
+  letter-spacing: 0.1rem;
+  border-radius: 5px;
+  transition: background 0.4s;
+}
+.innerHtml nav.tech_title ul li form input[type=reset] {
+  background: #474d57;
+  outline: none;
+  border: none;
+  color: #9b9ea3;
+  padding: 0.27rem 0.8rem;
+  letter-spacing: 0.1rem;
+  border-radius: 5px;
+  transition: color 0.4s;
+}
+.innerHtml .techInner {
   display: flex;
   width: 1300px;
   height: 800px;
   border: 1px solid saddlebrown;
+}
+
+.innerHtml nav.tech_title ul li > div:hover {
+  background: #5cb774;
+}
+.innerHtml nav.tech_title ul li > div:hover h5 {
+  color: white;
+  transition: color 0.4s;
+}
+
+.innerHtml nav.tech_title ul li form input[type=submit]:hover {
+  background: #4f9d63;
+}
+
+.innerHtml nav.tech_title ul li form input[type=reset]:hover {
+  color: white;
 }
 
 /* 只有平板以上有 */

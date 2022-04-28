@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="CSS/tech_serch.css?ver=20220413_01">
     <link rel="stylesheet" href="CSS/css/font-awesome.min.css">
     
-    <script src="tech_serch.js?ver=20220413_01" ></script>
+    
   
 </head>
 <body>
@@ -56,13 +56,87 @@
             <span></span>
         </ul>
     </nav>
-    <div class="test">
+    <nav class="serch">
+        <form action="">
+        <ul>
+            
+            <li>
+                <div class="top"><span><img src="/image/tech_serch/icon-12.png" alt=""></span><h3>地區</h3></div>
+                <div>
+                    <div class="select"><h3>請選擇</h3>
+                    <select class="select-inner" name="" id="">
+                        <!-- <option value="">請選擇</option> -->
+                        <option value="北區" data-content="北區">北區</option>
+                        <option value="中區" data-content="中區">中區</option>
+                        <option value="南區" data-content="南區">南區</option>
+                    </select>
+                    </div>
+                </div>                
+            </li>
+            <li>
+                <div class="top"><span><img src="/image/tech_serch/icon-11.png" alt=""></span><h3>站別</h3></div>
+                <div>
+                    <div class="select"><h3>請選擇</h3>
+                    <select class="select-inner" name="" id="">
+                        <!-- <option value="">請選擇</option> -->
+                        <option value="台北職訓中心" data-content="台北職訓中心">台北職訓中心</option>
+                        <option value="新北職訓中心" data-content="新北職訓中心">新北職訓中心</option>
+                        <option value="桃園職訓中心" data-content="桃園職訓中心">桃園職訓中心</option>
+                        <option value="中壢職訓中心" data-content="中壢職訓中心">中壢職訓中心</option>
+                    </select>
+                    </div>
+                </div>                
+            </li>
+            <li>
+                <div class="top"><span><img src="/image/tech_serch/icon-10.png" alt=""></span><h3>類別</h3></div>
+                <div>
+                    <div class="select"><h3>請選擇</h3>
+                    <select class="select-inner" name="" id="">
+                        <!-- <option value="">請選擇</option> -->
+                        <option value="職業安全衛生" data-content="職業安全衛生">職業安全衛生</option>
+                        <option value="防火管理" data-content="防火管理">防火管理</option>
+                        <option value="危險物品運送" data-content="危險物品運送">危險物品運送</option>
+                        <option value="電腦測驗" data-content="電腦測驗">電腦測驗</option>
+                    </select>
+                    </div>
+                </div>                
+            </li>
+            <li>
+                <div class="top"><span><img src="/image/tech_serch/icon-14.png" alt=""></span><h3>課程名稱</h3></div>
+                <div><input type="text" placeholder="&#xf002; 課程關鍵字……"></div>                
+            </li>
+        </ul>
+    </form>
+    </nav>
+    <nav class="tech_title">
+        <h4>近期所有課程</h4>
+        <h5>結合社會力量，配合政府策進工業安全衛生業務，力謀防止職業災害。</h5>
+        <nav>
+            <ul>
+                <li><div class="active"><h5>最近一個月</h5></div></li>
+                <li><div><h5>五月</h5></div></li>
+                <li><div><h5>六月</h5></div></li>
+                <li><div><h5>最近三個月</h5></div></li>
+                <li>
+                    <form action="">
+                        <p>從：</p>
+                        <input type="date" name="" id="">
+                        <p>開始到：</p>
+                        <input type="date" name="" id="">
+                        <input type="submit" value="送出查詢">
+                        <input type="reset" value="日期重置">
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </nav>   
+    <div class="techInner">
         
     </div>
 </div>
 <footer></footer>
 
-
+<script src="tech_serch.js?ver=20220413_01" ></script>
 <script>
 
 
