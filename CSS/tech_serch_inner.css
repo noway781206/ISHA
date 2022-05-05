@@ -1,0 +1,253 @@
+@charset "UTF-8";
+header .bot {
+  background-color: #f4f4f4;
+}
+
+.innerHtml.inner {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f4f4f4;
+}
+.innerHtml.inner .tag {
+  margin-bottom: 1rem;
+}
+.innerHtml.inner .tag h1, .innerHtml.inner .tag h3, .innerHtml.inner .tag h2 {
+  width: fit-content;
+  display: inline;
+}
+.innerHtml.inner h3 {
+  color: #3b8b50;
+  margin: 0 0.5rem;
+}
+.innerHtml.inner > .page {
+  width: 100%;
+  max-width: 1300px;
+  height: fit-content;
+}
+.innerHtml.inner > .page .title {
+  display: flex;
+  width: 100%;
+  background: white;
+  height: fit-content;
+  padding: 1rem 0rem 1rem 1.5rem;
+}
+.innerHtml.inner > .page .title h4 {
+  font-size: 1.3rem;
+}
+.innerHtml.inner > .page .teach_Info {
+  display: flex;
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.7rem 0rem 0.7rem 1.5rem;
+  background: white;
+  border-radius: 10px;
+  flex-direction: column;
+}
+.innerHtml.inner > .page .teach_Info h2 {
+  color: #3b8b50;
+  font-size: 1.1rem;
+}
+.innerHtml.inner > .page .teach_Info .data {
+  margin-top: 1rem;
+}
+.innerHtml.inner > .page .teach_Info .data h1 {
+  margin: 0 0 0.7rem 0;
+}
+.innerHtml.inner > .page .teach_what {
+  display: flex;
+  width: 100%;
+  margin-top: 0.15rem;
+  padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+  background: white;
+  border-radius: 5px;
+  flex-direction: column;
+}
+.innerHtml.inner > .page .teach_what h2 {
+  color: #3b8b50;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.innerHtml.inner > .page .teach_what h1 {
+  margin: 0 0 0.7rem 0;
+}
+.innerHtml.inner > .page .teach_introduce {
+  display: flex;
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.7rem 1.5rem 5rem 1.5rem;
+  background: white;
+  border-radius: 3px;
+  flex-direction: column;
+}
+.innerHtml.inner > .page .teach_introduce h4 {
+  font-size: 1.3rem;
+  display: inline-block;
+  width: fit-content;
+  color: #5cb774;
+}
+.innerHtml.inner > .page .teach_introduce > img {
+  width: 100%;
+  object-fit: cover;
+  height: 20rem;
+  object-position: top;
+  margin: 1rem 0;
+  max-width: 798px;
+}
+.innerHtml.inner > .page .teach_introduce h1 {
+  margin: 0 0 0.7rem 0;
+}
+.innerHtml.inner > .page .teach_introduce .textOut {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+}
+.innerHtml.inner > .page .teach_introduce .text {
+  display: flex;
+  flex: 1;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #f4f4f4;
+  border-left: 1px solid #f4f4f4;
+}
+.innerHtml.inner > .page .teach_introduce .text h1 {
+  margin: 0;
+}
+.innerHtml.inner > .page .teach_introduce .text01, .innerHtml.inner > .page .teach_introduce .text03 {
+  flex: 0.3;
+}
+.innerHtml.inner > .page .teach_introduce .text03 {
+  border-right: 1px solid #f4f4f4;
+}
+.innerHtml.inner > .page .teach_introduce .textOut:nth-child(3) {
+  background: #5cb774;
+}
+.innerHtml.inner > .page .teach_introduce .textOut:nth-child(3) .text {
+  border: 1px solid white;
+}
+.innerHtml.inner > .page .teach_introduce .textOut:nth-child(3) h1 {
+  color: white;
+}
+.innerHtml.inner > .page .teach_introduce .QA {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.innerHtml.inner > .page .teach_introduce .QA ul > li {
+  margin: 1.2rem 0;
+}
+.innerHtml.inner > .page .teach_introduce .QA h3 {
+  margin: 0;
+}
+.innerHtml.inner > .page .teach_introduce .QA h2 {
+  font-size: 0.98rem;
+  margin: 0.5rem 0 0 0;
+}
+.innerHtml.inner > .page nav.button {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  background: white;
+  justify-content: center;
+  padding: 0 1rem 3rem;
+}
+.innerHtml.inner > .page nav.button > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 15rem;
+  border-radius: 3px;
+  transition: background-color 0.5s;
+}
+.innerHtml.inner > .page nav.button > div h1 {
+  font-size: 0.9rem;
+  transition: color 0.7s;
+}
+.innerHtml.inner > .page nav.button > :nth-child(1) {
+  background-color: #3ac25e;
+  margin-right: 2rem;
+}
+.innerHtml.inner > .page nav.button > :nth-child(1) h1 {
+  color: white;
+  font-weight: bold;
+}
+.innerHtml.inner > .page nav.button > :nth-child(1):hover {
+  background-color: #2c9f4a;
+}
+.innerHtml.inner > .page nav.button > :nth-child(2) {
+  border: 2px solid #3ac25e;
+}
+.innerHtml.inner > .page nav.button > :nth-child(2) h1 {
+  color: #3ac25e;
+  font-weight: bold;
+}
+.innerHtml.inner > .page nav.button > :nth-child(2):hover {
+  background-color: #3ac25e;
+}
+.innerHtml.inner > .page nav.button > :nth-child(2):hover h1 {
+  color: white;
+}
+
+/* 只有平板以上有 */
+/* 平板與大手機 RWD*/
+@media only screen and (max-width: 768px) {
+  body.teach_inner, html.teach_inner {
+    font-size: smaller;
+  }
+
+  h1, .innerHtml.inner h3 {
+    font-size: 1.2rem;
+    line-height: 1.9rem;
+  }
+
+  .innerHtml.inner > .page .teach_Info h2,
+.innerHtml.inner > .page .teach_what h2 {
+    font-size: 1.4rem;
+  }
+
+  .innerHtml.inner > .page .teach_introduce h4,
+.innerHtml.inner > .page .title h4 {
+    font-size: 1.6rem;
+  }
+
+  .innerHtml.inner > .page .teach_introduce .QA h2 {
+    font-size: 1.18rem;
+    line-height: 1.7rem;
+  }
+
+  header .book {
+    width: 80%;
+    right: 20px;
+    top: 20%;
+  }
+
+  .innerHtml.inner > .page .teach_Info,
+.innerHtml.inner > .page .teach_what,
+.innerHtml.inner > .page .teach_introduce,
+.innerHtml.inner > .page .title {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
+
+  .innerHtml.inner > .page nav.button {
+    padding: 0 0.5rem 3rem;
+  }
+
+  .innerHtml.inner > .page nav.button > div {
+    height: 3rem;
+  }
+
+  .innerHtml.inner > .page nav.button > :nth-child(1) {
+    margin-right: 0.5rem;
+  }
+
+  .innerHtml.inner > .page nav.button > div h1 {
+    font-size: 1.1rem;
+  }
+}
+
+/*# sourceMappingURL=tech_serch_inner.css.map */

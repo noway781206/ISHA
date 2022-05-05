@@ -147,20 +147,50 @@
     
 //     }
 
+let delay = (n,func)=>{
+
+  return new Promise(function(resolve){
+      
+
+    func
+
+      setTimeout(resolve,n*1000);
+
+  });
+}
+let a = ()=>{
+  return new Promise(function(resolve){
+    let setTiem =null;
+    
+      
+
+    document.querySelector('.test01').classList.toggle('active')
+    document.querySelector('.test01').addEventListener('transitionend',(e)=>{
+      clearTimeout(setTiem)
+      setTiem = setTimeout(()=>{
+        console.log('開始');
+        resolve()
+      },1);
+      
+    })
+
+    
+
+  });
+
  
 
 
-let TIMEOUT = null;
-window.onresize = () => {
-  if(TIMEOUT === null) {
-    TIMEOUT = window.setTimeout(() => {
-      TIMEOUT = null;
-      //fb_iframe_widget class is added after first FB.FXBML.parse()
-      //fb_iframe_widget_fluid is added in same situation, but only for mobile devices (tablets, phones)
-      //By removing those classes FB.XFBML.parse() will reset the plugin widths.
-      document.querySelector('.fb-page').classList.remove('fb_iframe_widget');
-      document.querySelector('.fb-page').classList.remove('fb_iframe_widget_fluid')
-      FB.XFBML.parse();
-    }, 300);
-  }
+  
 }
+let test01 = async()=>{
+  console.log(123);
+  await a()
+  await delay(1)
+  console.log(123);
+  
+  
+  
+}
+document.querySelector('.test01').addEventListener('click',test01)
+
