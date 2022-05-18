@@ -44,7 +44,7 @@ let lastScrollTop = 0;
   let rwdBlack = document.querySelector('#rwdblack');
   let dropMenu = document.querySelectorAll('.drop-menu');
   let rwdList = [...document.querySelectorAll('.drop-menu>ul>li')];
-  let rwdLastbutton = document.querySelectorAll('.drop-menu button')
+  let rwdLastbutton = document.querySelectorAll('.drop-menu>button')
   let menuText = document.querySelectorAll('.menu-text');
   let touchstartX,touchstartY,touchendX,touchendY,pullX,pullY;
   let newX,newY,percent;
@@ -232,6 +232,10 @@ window.addEventListener('scroll',throttle(menuOffset))
     
   }
   let topButtonHLer = (e) => {
+    setTimeout(()=>{
+     
+      
+    
     span[0].style.transform = "translate(-27%,13%)";
     span[2].style.transform = "translate(-27%,-13%)";
     span[1].style.transform = "scaleX(1)";
@@ -271,10 +275,11 @@ window.addEventListener('scroll',throttle(menuOffset))
     //   e.target === menuTexts?backbuttonNav():"";
       
     // })
+
     
     
     
-   
+    },50)
     
     
     
@@ -283,6 +288,12 @@ window.addEventListener('scroll',throttle(menuOffset))
    
   }
   let rwdInnerList = (e) => {
+    
+    if(e.composedPath()[0].classList.contains('innerText'),
+    e.composedPath()[1].classList.contains('innerText'),
+    e.composedPath()[2].classList.contains('innerText'))return
+   
+    
     let {currentTarget} = e
     
     let text = currentTarget.querySelector('.innerText');
@@ -320,8 +331,8 @@ window.addEventListener('scroll',throttle(menuOffset))
    
     a.classList.remove('atcive')
     document.querySelectorAll('.innerText').forEach((item)=>{
-      let a = item.classList.contains('active');
-      a ? item.classList.remove('active'):'';
+      let b = item.classList.contains('active');
+      b ? item.classList.remove('active'):'';
       
     })
     
@@ -425,7 +436,13 @@ window.addEventListener('scroll',throttle(menuOffset))
           a ? item.classList.remove('active'):'';
           
         })
-        
+        rwdList.forEach((list)=>{
+          list.querySelector('h2 span:nth-child(1)')?list.querySelector('h2 span:nth-child(1)').classList.remove('active'):'';
+          list.querySelector('.rwd-drop-icon')? list.querySelector('.rwd-drop-icon').classList.remove('active') :'';
+          
+          
+          
+        })
         console.log(4);
        
         
@@ -438,17 +455,21 @@ window.addEventListener('scroll',throttle(menuOffset))
       [...dropMenu].some(e=>e.classList.contains('atcive')) ===true
       &&menuTexts.classList.contains('menuPop') === true
       &&location.hash ==="#menu"
-      &&percent <= 30){
+      &&percent <= 30
+      
+      ){
      
      [...dropMenu].filter((e)=>{
        return e.classList.contains('atcive')
      }).forEach(e=>{e.style.transform = !null? null :'' ;
      e.style.transition  = !null? null :'' ;
-     document.querySelectorAll('.innerText').forEach((item)=>{
-      let a = item.classList.contains('active');
-      a ? item.classList.remove('active'):'';
+    //  document.querySelectorAll('.innerText').forEach((item)=>{
+    //   let a = item.classList.contains('active');
+    //   a ? item.classList.remove('active'):'';
       
-    })
+    // })
+
+  
      console.log(5);
      })
      
@@ -660,7 +681,7 @@ window.addEventListener('scroll',throttle(menuOffset))
   rwdBlack.addEventListener('click',topButtonHLer)
   rwdList.forEach((list)=>{
    
-    list.addEventListener('click',rwdInnerList)
+    list.addEventListener('click',rwdInnerList,true)
   })
   rwdLastbutton.forEach((button)=>{
     button.addEventListener('click',rwdLastHLer)

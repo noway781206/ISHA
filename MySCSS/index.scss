@@ -19,6 +19,15 @@
  
 
 // }
+@keyframes loading {
+    0%{
+    stroke-dashoffset: 0;
+    }
+    100%{
+    stroke-dashoffset: 100; /* 線條順時針偏移 */
+    }
+}
+
 *{
     box-sizing: border-box;
 }
@@ -232,22 +241,77 @@ $mainGreen:#14b119;
                 bottom: 5%;
                 justify-content: center;
                 align-items: center;
+                
                 span{
-                    display: block;
-                    width: 9px;
-                    height: 9px;                    
-                    border-radius: 100%;
                     margin: 0 1.5%;
-                    border: 2px solid #fff;
-                    opacity: 0.5;
+                    position: relative;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     z-index: 1;
                     cursor: pointer;
-                    transition:background 0.25s ,opacity 0.25s;
+           
+                    .pointer{
+                        display: block;
+                        
+                        width: 8px;
+                        height: 8px;                    
+                        border-radius: 100%;
+                        
+                        border: 2px solid #fff;
+                        opacity: 0.5;
+                        z-index: 1;
+                        
+                        transition:background 0.25s ,opacity 0.25s;
+                        z-index: 2;
+    
+                    }
+                    
+                    div.svg{
+                        position: absolute;
+                        display: flex;
+                        //background-color: pink;
+                        // background: pink;
+                        top: 0;
+                        left: 0;
+                        z-index: 1;
+                        opacity: 0;
+                        display: none;
+                        svg{
+                            width: 20px;
+                            height: 20px;
+                            circle{
+                                stroke:#1f9b23;
+                                animation: loading 7s 0s ease-out;
+                                will-change: transform;
+                                transform: rotateZ(270deg);
+    transform-origin: center;
+                            }
+                        }
+                    }
                 }
-                span.active{
+                span:after{
+                    position: absolute;
+                    content: '';
+                    width: 16.5px;
+                    height: 16.5px;                    
+                    border-radius: 100%;
+                    border: 1px solid #1f9b23;
+                    opacity: 0;
+                }
+                span.active:after{
+                    opacity: 1;
+                }
+                span.active .pointer{
                     opacity: 1;
                  
                     background: white;
+                }
+                span.active  div.svg{
+                    opacity: 1;
+                    display: flex;
                 }
             }
             

@@ -96,6 +96,7 @@ const mousedownRwd = (function () {
     let transEndSwicher = true;
     let SwicherY = true;
     let pullStop = true;
+    let changeTime;
     let innerLink = document.querySelectorAll('.cotain .inner a');
     let pre = ()=>{
         return new Promise( resolve =>{  
@@ -109,8 +110,15 @@ const mousedownRwd = (function () {
             
             for (let i = 0; i < inner.length; i++) {  
               let botNavSpan = document.createElement('span');      
+              let botNavSvg = document.createElement('div'); 
+              let botNavPointer = document.createElement('div'); 
               botNavSpan.setAttribute('data-nunber',`${i}`)
+              botNavSvg.classList.add('svg');
+              botNavPointer.classList.add('pointer');
+              botNavSvg.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle r="15.915" cy="18" cx="18" fill="none" stroke="#14B119" stroke-width="4" stroke-dasharray="100" stroke-dashoffset="0"></circle></svg>`
               botNav.insertAdjacentElement('beforeend',botNavSpan)    
+              botNavSpan.insertAdjacentElement('afterbegin',botNavSvg)   
+              botNavSpan.insertAdjacentElement('afterbegin',botNavPointer)   
               
             }
             
@@ -177,7 +185,7 @@ const mousedownRwd = (function () {
                  
        }
        
-       transEndSwicher = true
+       
        //下方燈號開始
        botSpans[index].classList.add('active')
        botSpans.forEach(item=>{
@@ -189,6 +197,9 @@ const mousedownRwd = (function () {
          })
        
          //下方燈號結束
+         transEndSwicher = true
+         clearInterval(changeTime);
+         changeTime = setInterval(changeHDLer,7000)
 
     })
     //transitionEnd 結束
@@ -266,7 +277,8 @@ const mousedownRwd = (function () {
       cotain.classList.add('active');
       cotain.style.left = `${leftInit+100}%`;
       leftInit += 100;
-       index += -1;      
+       index += -1;     
+       transEndSwicher = false 
     }
     function nextButtonHLer(e) {
       if(transEndSwicher ===false)return
@@ -274,6 +286,8 @@ const mousedownRwd = (function () {
       cotain.style.left = `${leftInit-100}%`;
       leftInit += -100;
       index += +1;   
+      transEndSwicher = false
+      
     }
     //中間按鈕結束
     slider.addEventListener(mousedownRwd,sliderMouseDown)
@@ -467,6 +481,21 @@ let linkStartX,linkEndTimeX,linkStartY,linkEndTimeY;
 })
 
 //超連結結束
+
+//自動換頁
+
+
+let changeHDLer =()=>{
+  
+  nextButtonHLer();
+  
+ 
+  
+}
+
+setTimeout(changeHDLer,7000)
+
+
 
 
 

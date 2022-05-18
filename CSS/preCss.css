@@ -377,10 +377,6 @@ header {
   color: #6bbc6e;
 }
 
-.drop-menu .innerText li:hover::before {
-  opacity: 1;
-}
-
 /* footer */
 footer {
   display: flex;
@@ -530,6 +526,10 @@ footer .footer-botton h4 {
 
   .rwd-notice {
     display: none;
+  }
+
+  .drop-menu .innerText li:hover::before {
+    opacity: 1;
   }
 
   /* 結束 */
@@ -859,10 +859,11 @@ footer .footer-botton h4 {
     flex: initial;
     margin: 1.25rem 0;
     transform: translateY(0);
+    opacity: 1;
   }
 
   .drop-menu > ul > li h2 {
-    padding: 0 2.5rem;
+    padding: 0 2.5rem 9px;
     font-weight: bold;
   }
 
@@ -906,8 +907,8 @@ footer .footer-botton h4 {
     overflow: hidden;
     height: fit-content;
     max-height: 0;
-    padding: 0 14%;
-    margin: 9px 0 0 0;
+    padding: 0;
+    margin: 0px 0 0 0;
     transition: max-height 0.6s;
     background: #14b11912;
   }
@@ -918,8 +919,13 @@ footer .footer-botton h4 {
 
   .drop-menu .innerText li {
     margin: 0 0 9px 0;
-    padding: 1rem 0;
     margin: 0;
+  }
+
+  .drop-menu .innerText li > a {
+    display: block;
+    padding: 0.6rem 14%;
+    margin: 0.4rem 0;
   }
 
   /* 底部選單 */
