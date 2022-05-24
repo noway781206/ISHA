@@ -217,7 +217,7 @@
 }
 .innerHtml .contain01 > div:nth-child(1) .slider > .navBot span div.svg svg circle {
   stroke: #1f9b23;
-  animation: loading 7s 0s ease-out;
+  animation: loading 7.3s 0s ease-out;
   will-change: transform;
   transform: rotateZ(270deg);
   transform-origin: center;

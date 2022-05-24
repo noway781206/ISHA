@@ -193,4 +193,26 @@ let test01 = async()=>{
   
 }
 document.querySelector('.test01').addEventListener('click',test01)
-
+let AAAA = null; 
+fetch('https://eoffice.isha.org.tw/api/membership/read', {
+  method: 'POST',
+  headers: {
+    
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+  },
+  //mode: 'no-cors',
+  body: JSON.stringify({"pass":"A"})
+})
+  .then((res) => {
+  
+    console.log(res);
+    return res.json()
+ 
+    //return response.json(); 
+  }).then((result)=>{
+    console.log(result);
+    AAAA = result
+    
+  }).catch((err) => {
+    console.log('錯誤:', err);
+});
